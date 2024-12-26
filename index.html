@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shivansh's Portfolio</title>
+    <style>
+        /* CSS Custom Properties */
+        :root {
+            --font: "JetBrains Mono", monospace;
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --accent: #0ea5e9;
+            --secondary: #d4d4d4;
+            --spacing: 1.5rem;
+            --max-width: 65ch;
+        }
+
+        [data-theme="dark"] {
+            --bg: #1a1a1a;
+            --text: #ffffff;
+            --secondary: #404040;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: var(--spacing);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 1.8rem;
+            margin: calc(var(--spacing) * 2) 0;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            margin: calc(var(--spacing) * 1.5) 0 var(--spacing);
+        }
+
+        /* Links */
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        a:hover {
+            border-color: var(--accent);
+        }
+
+        /* Lists */
+        ul {
+            list-style: none;
+            margin: var(--spacing) 0;
+        }
+
+        li {
+            margin: calc(var(--spacing) / 2) 0;
+            padding-left: var(--spacing);
+            border-left: 2px solid var(--secondary);
+            transition: border-color 0.3s;
+        }
+
+        li:hover {
+            border-color: var(--accent);
+        }
+
+        /* Sections */
+        section {
+            margin: calc(var(--spacing) * 2) 0;
+        }
+
+        /* Theme Toggle */
+        #theme-toggle {
+            position: fixed;
+            top: var(--spacing);
+            right: var(--spacing);
+            background: none;
+            border: 2px solid var(--text);
+            color: var(--text);
+            padding: 0.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 50%;
+            transition: all 0.3s;
+            width: 2.5rem;
+            height: 2.5rem;
+        }
+
+        #theme-toggle:hover {
+            background: var(--secondary);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: calc(var(--spacing) * 3);
+            padding-top: var(--spacing);
+            border-top: 2px solid var(--secondary);
+            text-align: center;
+        }
+
+        footer a {
+            margin: 0 1rem;
+        }
+
+        @media (max-width: 600px) {
+            :root {
+                --spacing: 1rem;
+            }
+
+            body {
+                padding: var(--spacing);
+                font-size: 0.9rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+    
+    <main>
+        <h1>hi, i am <a href='/'>Shivansh Pratap Singh</a></h1>
+        
+        <section>
+            <p>i am a second year student, studying computer science.</p>
+            <p>working on dsa and back end.</p>
+        </section>
+
+        <section>
+            <h2><a href='/projects'>projects</a></h2>
+            <ul>
+                <li><a href="https://github.com/ShiiiivanshSingh/Flag-Guess-">flag guess</a></li>
+                <li><a href="https://github.com/ShiiiivanshSingh/SMify">smify</a></li>
+                <li><a href="https://github.com/ShiiiivanshSingh/TaskPop">taskpop </a></li>
+                <li><a href="https://github.com/ShiiiivanshSingh/Overdrop">overdrop</a></li>
+                <li><a href="https://github.com/ShiiiivanshSingh/Python-File-Sharing">python file sharing</a></li>
+            </ul>
+        </section>
+
+        <!-- <section>
+            <h2>research papers</h2>
+            <p>[working on one rn]</p>
+        </section> -->
+
+      <!--   <section>
+            <h2><a href='/blogs'>blogs</a></h2>
+            <ul>
+                <li><a href='/mlblogs'>all my ml blogs</a></li>
+                <li><a href="https://medium.com/@ShivanshPratapSingh/voyage-of-1st-year-a-cs-journey-2f3be888ff5e">how to get into cs</a></li>
+                <li><a href="https://medium.com/@ShivanshPratapSingh/introduction-to-machine-learning-e272cf75b5b0">how to get into ml</a></li>
+                <li><a href="https://ShivanshPratapSingh.bearblog.dev/">my thoughts</a></li>
+            </ul>
+        </section>  -->
+
+        
+    </main>
+    
+    <footer>
+        <a href="https://github.com/ShiiiivanshSingh" target="_blank" rel="noopener">github</a> | 
+        <a href="https://x.com/de_mirage_fan" target="_blank" rel="noopener">twitter</a>
+    </footer>
+
+    <script>
+        const toggle = document.getElementById('theme-toggle');
+        
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme') || 
+                          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        
+        // Apply theme
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        
+        toggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    </script>
+</body>
+</html>

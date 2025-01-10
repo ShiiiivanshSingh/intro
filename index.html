@@ -159,51 +159,55 @@
             }
         }
 
-        /* Skills Section */
-        .skills-container {
-            overflow: hidden; /* Hide overflowing content */
-            position: relative;
-        }
+    /* Skills Section */
+.skills-container {
+    overflow: hidden;
+    position: relative;
+}
 
-        .skills-list {
-            display: flex;
-            gap: 1rem;
-            list-style: none;
-            padding: 0;
-            animation: scroll-left-to-right 20s linear infinite; /* Continuous scroll */
-            margin: 0;
-        }
+.skills-list {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    animation: scroll-left-to-right 20s linear infinite;
+    margin: 0;
+   
+}
 
-        .skills-list li {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1.2rem;
-        }
+.skills-list li {
+    flex: 0 0 15%;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+}
 
-        .skills-list i {
-            font-size: 2rem;
-            color: var(--accent);
-            transition: color 0.3s ease;
-        }
+.skills-list i {
+    font-size: 2rem;
+    color: var(--accent);
+    transition: color 0.3s ease;
+}
 
-        .skills-list li:hover {
-            transform: scale(1.1);
-        }
+.skills-list li:hover {
+    transform: scale(1.1);
+}
 
-        .skills-list li:hover i {
-            color: var(--text);
-        }
+.skills-list li:hover i {
+    color: var(--text);
+}
 
-        /* Scroll Animation */
-        @keyframes scroll-left-to-right {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
-        }
+/* Scroll Animation */
+@keyframes scroll-left-to-right {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%); /* Scroll to half of the content's width */
+    }
+}
+
+
         #social-links ul {
     display: flex;
     flex-wrap: wrap;
@@ -275,12 +279,11 @@ footer i:hover {
     color: var(--text);
     transform: scale(1.1);
 }
-
 /* Heart Flying Animation */
 @keyframes fly-heart {
     0% {
         transform: translateY(0) scale(1);
-        opacity: 0.5;
+        opacity: 1;
     }
     100% {
         transform: translateY(-100vh) scale(0.5);
@@ -288,38 +291,99 @@ footer i:hover {
     }
 }
 
-.heart {
-    position: absolute;
-    bottom: 0;
-    font-size: 2rem;
-    color: var(--accent);
-    animation: fly-heart 10s linear forwards; /* Slow down the animation to 10 seconds */
-    animation-delay: 0.1s;
-    opacity: 0.5; /* Make hearts slightly transparent */
+/* Heart Fade-in Animation */
+@keyframes fadeIn2 {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
+.heart {
+    position: absolute;
+    font-size: 2rem;
+    color: var(--accent);
+    animation: fadeIn2 2s forwards, fly-heart 10s linear forwards;
+    animation-delay: 0.1s; /* Small delay for fade-in */
+    opacity: 0; /* Start fully transparent */
+}
+
+/* Popup */
 .popup {
     display: none;
     position: fixed;
-    bottom: 20px;
+    bottom: 100px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: var(--accent); /* Match accent color */
-    color: var(--bg); /* Match background color */
+    background-color: rgba(255, 255, 255, 0.5);; /* Match accent color */
+    color: rgb(0, 0, 0); /* Match background color */
     padding: 1rem;
     border-radius: 10px;
     font-size: 1.2rem;
     z-index: 100;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     opacity: 0;
-    transition: opacity 0.3s ease;
+    animation: fadeOut 2s forwards; /* Default fade-out animation */
 }
 
+/* Show popup with fade-in */
 .popup.show {
     display: block;
-    opacity: 1;
-    transition: opacity 1s ease;
+    animation: fadeIn 0.5s forwards; /* Fade-in animation */
 }
+
+.popup.hide {
+    opacity: 0;
+    visibility: hidden; /* Hide the popup */
+    animation: fadeOut 1s forwards; /* Fade-out animation */
+}
+
+.heart-counter {
+    font-size: 14px; /* Smaller font size */
+    display: block; /* Ensures it appears on a new line */
+    margin-top: 5px;
+}
+
+
+/* Fade-in animation for the popup */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Fade-out animation for the popup */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(30px);
+    }
+}
+
+.popup.hide {
+    opacity: 0;
+    visibility: hidden; /* Hide the popup */
+    animation: fadeOut 1s forwards; /* Apply fade-out animation */
+}
+
+footer {
+
+.popup-content p {
+    color: #fff;
+    font-size: 16px;
+}
+
 
 
     </style>
@@ -404,6 +468,13 @@ footer i:hover {
                     <li><i class="fab fa-node-js"></i> Node.js</li>
                     <li><i class="fab fa-git"></i> Git</li>
                     <li><i class="fab fa-github"></i> GitHub</li>
+                    <li><i class="fab fa-python"></i> Python</li>
+                    <li><i class="fab fa-java"></i> Java</li>
+                    <li><i class="fab fa-js"></i> JavaScript</li>
+                    <li><i class="fab fa-react"></i> React</li>
+                    <li><i class="fab fa-node-js"></i> Node.js</li>
+                    <li><i class="fab fa-git"></i> Git</li>
+                    <li><i class="fab fa-github"></i> GitHub</li>
                     
                 </ul>
             </div>
@@ -461,36 +532,100 @@ footer i:hover {
 
 
         <footer>
-            <p>Made with <i class="fa-solid fa-heart" id="heart-icon"></i> by Shivansh</p>
+            <p>Made with <i class="fa-solid fa-heart" id="heart-icon"></i>  by Shivansh
+                <span class="heart-counter" id="counter-container" style="display: none;"> <span id="heart-count">0</span> <i class="fa-solid fa-heart" id="heart-icon"></i> given</span>
+            </p>
         </footer>
+        
+        
+      
+        
         
         <div id="popup" class="popup">Thanks for visiting!</div>
         
     </main>
 
     <script>
+
+
+let heartIcon = document.getElementById('heart-icon');
+let heartCount = document.getElementById('heart-count');
+let counterContainer = document.getElementById('counter-container');
+let count = 0;
+
+heartIcon.addEventListener('click', function() {
+    count++;
+    heartCount.textContent = count;
+    counterContainer.style.display = 'block'; // Show counter when heart is clicked
+});
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const heartIcon = document.getElementById('heart-icon');
     const popup = document.getElementById('popup');
-
+    const heartCountDisplay = document.getElementById('heart-count');
+    
+    let heartPressCount = 0; // Initialize the counter
+    
     heartIcon.addEventListener('click', () => {
+        heartPressCount++; // Increment the counter
+
+        // Update the heart counter in the footer
+        heartCountDisplay.textContent = heartPressCount;
+
         // Create flying hearts
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 10; i++) {
             let heart = document.createElement('i');
             heart.classList.add('fa-solid', 'fa-heart', 'heart');
             document.body.appendChild(heart);
-
+    
             // Randomize the horizontal position of the hearts
-            heart.style.left = `${Math.random() * 100}vw`;
-            heart.style.animationDelay = `${Math.random() * 2}s`;
+            heart.style.left = `${Math.random() * 100}vw`; // Position horizontally anywhere across the screen
+            heart.style.animationDelay = `${Math.random() * 2}s`; // Random delay for each heart
         }
-
+    
         // Show the popup
         popup.classList.add('show');
-
-        // Hide the popup after 10 seconds
+    
+        // Fade out the popup after 3 seconds
         setTimeout(() => {
             popup.classList.remove('show');
+            popup.classList.add('hide'); // Trigger fade-out effect
+        }, 3000); // Popup stays for 3 seconds
+    });
+});
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const heartIcon = document.getElementById('heart-icon');
+    const popup = document.getElementById('popup');
+    
+    heartIcon.addEventListener('click', () => {
+        // Create flying hearts
+        for (let i = 0; i < 10; i++) {
+            let heart = document.createElement('i');
+            heart.classList.add('fa-solid', 'fa-heart', 'heart');
+            document.body.appendChild(heart);
+    
+            // Randomize the horizontal position of the hearts
+            heart.style.left = `${Math.random() * 100}vw`; // Position horizontally anywhere across the screen
+            heart.style.animationDelay = `${Math.random() * 2}s`; // Random delay for each heart
+        }
+    
+        // Show the popup
+        popup.classList.add('show');
+    
+        // Fade out the popup after 3 seconds
+        setTimeout(() => {
+            popup.classList.remove('show');
+            popup.classList.add('hide'); // Trigger fade-out effect
         }, 3000); // Popup stays for 3 seconds
     });
 });

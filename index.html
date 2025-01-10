@@ -6,6 +6,7 @@
     <title>Shivansh's Works</title>
     <!-- FontAwesome CDN -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    
     <link rel="icon" type="favicon." href="icons/user-solid.svg">
    
     <style>
@@ -203,6 +204,124 @@
                 transform: translateX(-100%);
             }
         }
+        #social-links ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+}
+
+#social-links li {
+    flex: 1 0 10%;
+    text-align: center;
+    position: relative;
+}
+
+#social-links a {
+    display: block;
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 2rem;
+    position: relative;
+}
+
+#social-links a:hover {
+    color: var(--text);
+}
+
+#social-links i {
+    font-size: 2.5rem;
+}
+
+.social-name {
+    position: absolute;
+    bottom: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1rem;
+    color: var(--accent);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease;
+}
+
+#social-links a:hover .social-name {
+    opacity: 1;
+    visibility: visible;
+    color: var(--accent);
+    transform: translateX(-50%) translateY(5px);
+}
+
+/* Adjust exit animation */
+#social-links li:hover .social-name {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(5px);
+}
+
+#social-links li:not(:hover) .social-name {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) translateY(0); /* Reset to original position */
+}
+footer i {
+    color: var(--accent);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+footer i:hover {
+    color: var(--text);
+    transform: scale(1.1);
+}
+
+/* Heart Flying Animation */
+@keyframes fly-heart {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(-100vh) scale(0.5);
+        opacity: 0;
+    }
+}
+
+.heart {
+    position: absolute;
+    bottom: 0;
+    font-size: 2rem;
+    color: var(--accent);
+    animation: fly-heart 10s linear forwards; /* Slow down the animation to 10 seconds */
+    animation-delay: 0.1s;
+    opacity: 0.5; /* Make hearts slightly transparent */
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--accent); /* Match accent color */
+    color: var(--bg); /* Match background color */
+    padding: 1rem;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    z-index: 100;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.popup.show {
+    display: block;
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+
+
     </style>
 </head>
 <body>
@@ -290,12 +409,93 @@
             </div>
         </section>
         
+        <section id="social-links">
+            <h2>Socials</h2>
+            <ul>
+                <li>
+                    <a href="https://www.linkedin.com/in/shivansh-pratap-singh-23b3b92b1" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                        <span class="social-name">LinkedIn</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/ShiiiivanshSingh" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span class="social-name">GitHub</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/@shivanshpratapsingh" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                        <span class="social-name">YouTube</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.instagram.com/shivansh___siingh" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                        <span class="social-name">Instagram</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://x.com/de_mirage_fan" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                        <span class="social-name">Twitter</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://leetcode.com/u/ShivanshPratapSingh/" target="_blank">
+                        <i class="fa-solid fa-code"></i>
+                        <span class="social-name">LeetCode</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.geeksforgeeks.org/user/shivanshpratt8cf" target="_blank">
+                        <i class="fa-brands fa-codepen"></i>
+                        <span class="social-name">GFG</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+            
+
+
+
         <footer>
-            <p>Made with ❤️ by Shivansh</p>
+            <p>Made with <i class="fa-solid fa-heart" id="heart-icon"></i> by Shivansh</p>
         </footer>
+        
+        <div id="popup" class="popup">Thanks for visiting!</div>
+        
     </main>
 
     <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const heartIcon = document.getElementById('heart-icon');
+    const popup = document.getElementById('popup');
+
+    heartIcon.addEventListener('click', () => {
+        // Create flying hearts
+        for (let i = 0; i < 5; i++) {
+            let heart = document.createElement('i');
+            heart.classList.add('fa-solid', 'fa-heart', 'heart');
+            document.body.appendChild(heart);
+
+            // Randomize the horizontal position of the hearts
+            heart.style.left = `${Math.random() * 100}vw`;
+            heart.style.animationDelay = `${Math.random() * 2}s`;
+        }
+
+        // Show the popup
+        popup.classList.add('show');
+
+        // Hide the popup after 10 seconds
+        setTimeout(() => {
+            popup.classList.remove('show');
+        }, 3000); // Popup stays for 3 seconds
+    });
+});
+
+
         document.addEventListener('DOMContentLoaded', () => {
             const toggle = document.getElementById('theme-toggle');
             const toggleIcon = document.getElementById('toggle-icon');

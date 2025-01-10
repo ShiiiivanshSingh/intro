@@ -9,8 +9,11 @@
 
 <h2>Project Screenshots:</h2>
 
+ `dark mode:`
+![Screenshot 2025-01-11 014256](https://github.com/user-attachments/assets/9c717fcd-7298-4289-8c8a-68e00307f858)
 
-
+ `light mode:`
+![Screenshot 2025-01-11 014251](https://github.com/user-attachments/assets/7ec0c597-160a-42f7-b3de-38f6d62bad8e)
 
 
 

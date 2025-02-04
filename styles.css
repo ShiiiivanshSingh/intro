@@ -1,4 +1,3 @@
-
 /* CSS Custom Properties */
 :root {
     --font: "JetBrains Mono", monospace;
@@ -373,5 +372,11 @@ color: #fff;
 font-size: 16px;
 }
 
+}
+
+/* Ensure proper stacking context */
+main {
+    position: relative;
+    z-index: 1;
 }
 

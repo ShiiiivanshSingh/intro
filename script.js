@@ -1,5 +1,3 @@
-
-
 let heartIcon = document.getElementById('heart-icon');
 let heartCount = document.getElementById('heart-count');
 let counterContainer = document.getElementById('counter-container');
@@ -113,4 +111,52 @@ document.addEventListener('DOMContentLoaded', () => {
                 toggleIcon.innerHTML = newTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
             });
         });
+    
+// Add loading indicator functionality
+document.querySelectorAll('a[target="_blank"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+        // Don't show loading for GitHub icons
+        if (!this.classList.contains('github-icon')) {
+            this.classList.add('loading');
+        }
+    });
+});
+
+// Animate skills list items with delay
+document.querySelectorAll('.skills-list li').forEach((item, index) => {
+    item.style.animationDelay = `${index * 0.1}s`;
+});
+
+// Optional: Animate sections on scroll
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('section').forEach(section => {
+    section.style.animationPlayState = 'paused';
+    observer.observe(section);
+});
+
+// Register service worker
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then(registration => {
+                console.log('ServiceWorker registered:', registration);
+            })
+            .catch(error => {
+                console.log('ServiceWorker registration failed:', error);
+            });
+    });
+}
     

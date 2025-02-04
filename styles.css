@@ -1,20 +1,20 @@
 /* CSS Custom Properties */
 :root {
     --font: "JetBrains Mono", monospace;
-    --bg: #EBE9E1;
-    --text: #631A08;
-    --accent: #D6536D;
-    --secondary: #d4d4d4;
+    --bg: #1a1a1a;
+    --text: #ffffff;
+    --accent: #4086ef;  /* Original blueish accent for dark mode */
+    --secondary: #333333;
     --spacing: 1.5rem;
     --max-width: 65ch;
     --font-size: 1rem;
 }
 
-[data-theme="dark"] {
-    --bg: #1a1a1a;
-    --accent: #75a5fe;
-    --text: #EBE9E1;
-    --secondary: #404040;
+[data-theme="light"] {
+    --bg: #ffffff;
+    --text: #1a1a1a;
+    --secondary: #f0f0f0;
+    --accent: #f63281;  /* Original pinkish accent for light mode */
 }
 
 /* Base Styles */

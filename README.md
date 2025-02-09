@@ -67,11 +67,11 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 <img src="https://readme-typing-svg.demolab.com?font=Montserrat&size=18&duration=1000&pause=10000&color=FF6B6B&center=true&vCenter=true&random=false&width=435&lines=Made+with+%E2%9D%A4%EF%B8%8F+by+Shivansh+Pratap+Singh" alt="Typing SVG" />
 
-<div style="background: linear-gradient(to right, #ff6b6b, #4ecdc4); padding: 20px; border-radius: 10px; margin: 20px 0;">
+<div style="background: linear-gradient(to right, #ff6b6b, #4ecdc4); padding: 20px; border-radius: 10px; margin: 20px 0;" align="center">
 
-Project made to celebrate my return on this beautiful platform.  
-Yes I got Banned :( but good thing im back! <br>
-Made this because I hate being lonely and I don't have a lot of stuff going on in my life except for the bad things, obviously. I feel like this is a sort of escape from my life. Thanks for being here :)
+I'm delighted to announce my return to GitHub! After a temporary suspension, I'm grateful to be back on this incredible platform. Special thanks to Geoffrey from GitHub Support for his invaluable assistance in restoring my account. GitHub has become more than just a code repository for me - it's a place where I can channel my creativity and connect with an amazing community. Thank you for being part of this journey.
+
+Made this because I hate being lonely and I don't have a lot of stuff going on in my life except for the bad things, obviously. I'm going through a pretty rough phase of my life. Things aren't the best, but I'm making amends. It's a mental battle. I'm just coding to take my mind off things. I feel like this is a sort of escape from my life. Through coding and creating, I've found a way to express myself and build something meaningful. Even on the darkest days, coding gives me a sense of power, control, purpose, and belonging. Every star, fork, and interaction reminds me that I'm not alone in this journey, or maybe I am. Thanks for being here :) Your presence and support mean more than you know. This project is a reminder that I'm not worthless, and even in such a grim phase of my life, I haven't given up or anything. If you're reading this, thanks for being here.
 </div>
 
 </div>

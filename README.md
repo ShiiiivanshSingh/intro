@@ -1,5 +1,5 @@
 <h1 align="center" id="title">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=28&duration=1000&pause=10000&color=FF6B6B&center=true&vCenter=true&random=false&width=435&lines=My+Works+%E2%9C%A8;Welcome+to+My+Portfolio" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Montserrat&weight=900&size=28&duration=300&pause=100000&color=FFF&center=true&vCenter=true&random=false&width=435&lines=My+Works+%E2%9C%A8;Welcome+to+My+Portfolio" alt="Typing SVG" />
 </h1>
 
 <p align="center"><img src="https://socialify.git.ci/ShiiiivanshSingh/intro/image?font=Inter&amp;language=1&amp;name=1&amp;owner=1&amp;theme=Dark" alt="project-image"></p>
@@ -10,7 +10,7 @@
 </div>
 
 <h1 align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=25&duration=1000&pause=10000&color=36BCF7FF&center=true&vCenter=true&random=false&width=435&lines=Screenshots+%F0%9F%93%B8" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Montserrat&size=25&duration=1000&pause=10000&color=36BCF7FF&center=true&vCenter=true&random=false&width=435&lines=Screenshots+%F0%9F%93%B8" alt="Typing SVG" />
 </h1>
 
 <div align="center">
@@ -26,7 +26,7 @@
 ![Screenshot 2025-01-11 014251](https://github.com/user-attachments/assets/7ec0c597-160a-42f7-b3de-38f6d62bad8e)
 
 <h2 align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=1000&pause=10000&color=F75C7E&center=true&vCenter=true&random=false&width=435&lines=Connect+With+Me+%F0%9F%A4%9D" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Montserrat&size=22&duration=1000&pause=10000&color=F75C7E&center=true&vCenter=true&random=false&width=435&lines=Connect+With+Me+%F0%9F%A4%9D" alt="Typing SVG" />
 </h2>
 
 <div align="center">
@@ -41,7 +41,7 @@
 </div>
 
 <h2 align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=1000&pause=10000&color=63CF55&center=true&vCenter=true&random=false&width=435&lines=Project+Stats+%F0%9F%93%8A" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Montserrat&size=22&duration=1000&pause=10000&color=63CF55&center=true&vCenter=true&random=false&width=435&lines=Project+Stats+%F0%9F%93%8A" alt="Typing SVG" />
 </h2>
 
 <div align="center">
@@ -54,7 +54,7 @@
 </div>
 
 <h2 align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=1000&pause=10000&color=DDB225&center=true&vCenter=true&random=false&width=435&lines=License+%F0%9F%93%84" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Montserrat&size=22&duration=1000&pause=10000&color=DDB225&center=true&vCenter=true&random=false&width=435&lines=License+%F0%9F%93%84" alt="Typing SVG" />
 </h2>
 
 <div align="center">
@@ -65,7 +65,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ---
 <div align="center">
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=1000&pause=10000&color=FF6B6B&center=true&vCenter=true&random=false&width=435&lines=Made+with+%E2%9D%A4%EF%B8%8F+by+Shivansh+Pratap+Singh" alt="Typing SVG" />
+<img src="https://readme-typing-svg.demolab.com?font=Montserrat&size=18&duration=1000&pause=10000&color=FF6B6B&center=true&vCenter=true&random=false&width=435&lines=Made+with+%E2%9D%A4%EF%B8%8F+by+Shivansh+Pratap+Singh" alt="Typing SVG" />
 
 <div style="background: linear-gradient(to right, #ff6b6b, #4ecdc4); padding: 20px; border-radius: 10px; margin: 20px 0;">
 

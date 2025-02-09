@@ -70,6 +70,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 <div style="background: linear-gradient(to right, #ff6b6b, #4ecdc4); padding: 20px; border-radius: 10px; margin: 20px 0;">
 
 Project made to celebrate my return on this beautiful platform.  
+Yes I got Banned :( but good thing im back! <br>
 Made this because I hate being lonely and I don't have a lot of stuff going on in my life except for the bad things, obviously. I feel like this is a sort of escape from my life. Thanks for being here :)
 </div>
 

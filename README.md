@@ -2,10 +2,10 @@
 
 <p align="center"><img src="https://socialify.git.ci/ShiiiivanshSingh/intro/image?font=Inter&amp;language=1&amp;name=1&amp;owner=1&amp;theme=Dark" alt="project-image"></p>
 
-<h2>✨ Demo</h2>
+<div align="center">
 
-[https://shiiiivanshsingh.github.io/intro/](https://shiiiivanshsingh.github.io/intro/)
-
+[![GenQR](https://img.shields.io/badge/Visit-Now-ef233c?style=for-the-badge)](https://shiiiivanshsingh.github.io/intro/)
+</div>
 
 <h2>Project Screenshots:</h2>
 

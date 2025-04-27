@@ -15,6 +15,7 @@
   <img src="https://readme-typing-svg.demolab.com?font=Montserrat&size=25&duration=1000&pause=10000&color=36BCF7FF&center=true&vCenter=true&random=false&width=435&lines=Screenshots+%F0%9F%93%B8" alt="Typing SVG" />
 </h1>
 
+
 <div align="center">
   <h3><b>🌙 Dark Mode</b></h3>
 </div>

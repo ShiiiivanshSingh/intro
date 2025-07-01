@@ -2,7 +2,6 @@
   <img src="https://readme-typing-svg.demolab.com?font=Montserrat&weight=900&size=28&duration=300&pause=100000&color=FFF&center=true&vCenter=true&random=false&width=435&lines=My+Works+%E2%9C%A8;Welcome+to+My+Portfolio" alt="Typing SVG" />
 </h1>
 
-
 <p align="center"><img src="https://socialify.git.ci/ShiiiivanshSingh/intro/image?font=Inter&amp;language=1&amp;name=1&amp;owner=1&amp;theme=Dark" alt="project-image"></p>
 
 <div align="center">

@@ -81,10 +81,10 @@ guide to easter egg(s):
 Here's every easter egg and how to trigger it:
 
 **hidden password box** (two ways in)
-  click the heart in the footer 10 times
+  click the heart in the footer 10 times or 
   click the "shivansh's works" title in the header 10 times
 
-once the box opens, type hint if stuck.
+once the box opens, now type whatever u want n type hint if stuck.
 
 **bunny easter egg** — click the theme toggle 10 times → bunny appears at the bottom → click it → secret message with a hint about the password box
 

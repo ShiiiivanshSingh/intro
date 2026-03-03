@@ -1,6 +1,6 @@
 'use strict';
 
-// all the stuff you'd change if you forked this
+
 const CONFIG = {
     github:      'ShiiiivanshSingh',
     lfmUser:     'sh1vanshs2ngh',
@@ -9,7 +9,7 @@ const CONFIG = {
     birthDate:   '2005-07-08',
     graphColors: { light: 'D6536D', dark: '75a5fe' },
 
-    // change these whenever the watchlist changes
+    // watchlist 
     topFilms: [
         { title: "my night at maud's",                  year: '1969' },
         { title: 'adventures in babysitting',            year: '1987' },
@@ -85,7 +85,7 @@ function openPasswordModal() {
     setTimeout(() => document.getElementById('pw-input').focus(), 50);
 }
 
-// fake terminal effect — returns a function you call to clean up
+// fake terminal effect — returns a function call to clean up
 function runTerminal(lines, delayMs = 220) {
     const term = document.getElementById('debug-terminal');
     const out  = document.getElementById('debug-output');

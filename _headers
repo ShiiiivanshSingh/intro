@@ -1,0 +1,7 @@
+/*
+  Content-Security-Policy: default-src 'self' cdnjs.cloudflare.com; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' cdnjs.cloudflare.com
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+*/ 

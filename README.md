@@ -19,13 +19,15 @@
   <h3><b>🌙 Dark Mode</b></h3>
 </div>
 
-![Screenshot 2025-01-11 014256](https://github.com/user-attachments/assets/9c717fcd-7298-4289-8c8a-68e00307f858)
+
+<img width="1920" height="1080" alt="Screenshot 2026-03-03 164620" src="https://github.com/user-attachments/assets/09111fce-8349-48a8-a58a-7b4f11ae41e9" />
 
 <div align="center">
   <h3><b>☀️ Light Mode</b></h3>
 </div>
 
-![Screenshot 2025-01-11 014251](https://github.com/user-attachments/assets/7ec0c597-160a-42f7-b3de-38f6d62bad8e)
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/63bcf4d2-7480-439c-9f5a-a271ad912cef" />
+
 
 <h2 align="center">
   <img src="https://readme-typing-svg.demolab.com?font=Montserrat&size=22&duration=1000&pause=10000&color=F75C7E&center=true&vCenter=true&random=false&width=435&lines=Connect+With+Me+%F0%9F%A4%9D" alt="Typing SVG" />
@@ -74,6 +76,18 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 I'm delighted to announce my return to GitHub! After a temporary suspension, I'm grateful to be back on this incredible platform. Special thanks to Geoffrey from GitHub Support for his invaluable assistance in restoring my account. GitHub has become more than just a code repository for me - it's a place where I can channel my creativity and connect with an amazing community. Thank you for being part of this journey.
 
 <!--i made this because I hate being lonely and I don't have a lot of stuff going on in my life except for the bad things, obviously. I'm going through a pretty rough phase of my life. Things aren't the best, but I'm making amends. It's a mental battle. I'm just coding to take my mind off things. I feel like this is a sort of escape from my life. Through coding and creating, I've found a way to express myself and build something meaningful. Even on the darkest days, coding gives me a sense of power, control, purpose, and belonging. Every star, fork, and interaction reminds me that I'm not alone in this journey, or maybe I am. Thanks for being here :) Your presence and support mean more than you know. This project is a reminder that I'm not worthless, and even in such a grim phase of my life, I haven't given up or anything. If you're reading this, thanks for being here.-->
+
+guide to easter egg(s): 
+Here's every easter egg and how to trigger it:
+
+**hidden password box** (two ways in)
+  click the heart in the footer 10 times
+  click the "shivansh's works" title in the header 10 times
+
+once the box opens, type hint if stuck.
+
+**bunny easter egg** — click the theme toggle 10 times → bunny appears at the bottom → click it → secret message with a hint about the password box
+
 </div>
 
 </div>

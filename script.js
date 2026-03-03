@@ -9,6 +9,8 @@ const CONFIG = {
     birthDate:   '2005-07-08',
     graphColors: { light: 'D6536D', dark: '75a5fe' },
 
+
+    
     // watchlist 
     topFilms: [
         { title: "my night at maud's",                  year: '1969' },

@@ -275,14 +275,14 @@ a:hover { border-color: var(--accent); }
 }
 .featured-card {
     border: 1px solid var(--muted);
-    padding: calc(var(--sp)*.75); position: relative;
+    padding: calc(var(--sp)*.75);
+    position: relative;
     transition: border-color var(--ease), transform var(--ease);
     background: transparent;
-    border-bottom: 3px solid transparent;
 }
+
 .featured-card:hover {
     border-color: var(--accent);
-    border-bottom-color: var(--accent);
     transform: translateY(-2px);
 }
 

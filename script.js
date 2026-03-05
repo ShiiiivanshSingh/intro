@@ -667,6 +667,7 @@ function initFooter() {
 // ─── boot ─────────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
+    document.documentElement.classList.add('ready');
     initTheme();
     initNavigation();
     initCursor();

@@ -17,7 +17,9 @@
     --accent: #75a5fe;
     --muted: #2e2e2e;
 }
-
+html:not(.ready) * {
+    transition: none !important;
+}
 /* reset — boring but necessary */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }

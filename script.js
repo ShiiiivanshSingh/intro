@@ -259,8 +259,15 @@ function initLiveData() {
         const xml = new DOMParser().parseFromString(text, 'text/xml');
         for (const item of xml.querySelectorAll('item')) {
             const raw = item.querySelector('title')?.textContent || '';
-            const m   = raw.match(/^(.+?),\s*\d{4}/);
-            if (m) return m[1].trim();
+            if (!raw) continue;
+
+            let t = raw.trim();
+            t = t.split(' - ')[0].trim();
+            t = t.replace(/\s+[★].*$/u, '').trim();
+            t = t.replace(/\s*\(\d{4}\)\s*$/u, '').trim();
+            t = t.replace(/,\s*\d{4}\s*$/u, '').trim();
+
+            if (t) return t;
         }
         return null;
     }
@@ -302,7 +309,7 @@ function initLiveData() {
     fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(lbUrl)}`)
         .then(r => r.json())
         .then(d => {
-            const t = parseLbXml(d.contents);
+            const t = d?.contents ? parseLbXml(d.contents) : null;
             if (t) { setMovieTitle(t); saveMovieCache(t); }
             else throw new Error('no entry');
         })
@@ -315,7 +322,7 @@ function initLiveData() {
                     if (t) { setMovieTitle(t); saveMovieCache(t); }
                 })
                 .catch(() => {
-                    // both proxies down — cached value stays visible if we had one
+                    if (!cached && lbTitle) lbTitle.textContent = 'unavailable';
                 })
         );
 

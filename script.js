@@ -319,10 +319,9 @@ function initLiveData() {
     // proxies can be flaky on github pages, so try a few with a short timeout each
     (async () => {
         const attempts = [
-            { url: `https://corsproxy.io/?${encodeURIComponent(lbUrl)}`, as: 'text' },
             { url: `https://api.allorigins.win/raw?url=${encodeURIComponent(lbUrl)}`, as: 'text' },
             { url: `https://api.allorigins.win/get?url=${encodeURIComponent(lbUrl)}`, as: 'json' },
-            { url: `https://r.jina.ai/http://${lbUrl.replace(/^https?:\/\//, '')}`, as: 'text' },
+            { url: `https://r.jina.ai/${lbUrl}`, as: 'text' },
         ];
 
         for (const a of attempts) {

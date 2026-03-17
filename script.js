@@ -255,6 +255,17 @@ function initLiveData() {
     const lbTitle = document.getElementById('lb-title');
     const lbUrl   = `https://letterboxd.com/${CONFIG.letterboxd}/rss/`;
 
+    function fetchWithTimeout(url, ms = 7000, as = 'text') {
+        const ctrl = new AbortController();
+        const t = setTimeout(() => ctrl.abort(), ms);
+        return fetch(url, { signal: ctrl.signal })
+            .then(r => {
+                if (!r.ok) throw new Error(String(r.status));
+                return as === 'json' ? r.json() : r.text();
+            })
+            .finally(() => clearTimeout(t));
+    }
+
     function parseLbXml(text) {
         const xml = new DOMParser().parseFromString(text, 'text/xml');
         for (const item of xml.querySelectorAll('item')) {
@@ -305,26 +316,26 @@ function initLiveData() {
     if (cached) setMovieTitle(cached);
 
     // then fetch fresh data in the background
-    // if it matches cache we don't bother updating anything
-    fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(lbUrl)}`)
-        .then(r => r.json())
-        .then(d => {
-            const t = d?.contents ? parseLbXml(d.contents) : null;
-            if (t) { setMovieTitle(t); saveMovieCache(t); }
-            else throw new Error('no entry');
-        })
-        .catch(() =>
-            // fallback proxy if allorigins fails
-            fetch(`https://corsproxy.io/?${encodeURIComponent(lbUrl)}`)
-                .then(r => r.text())
-                .then(text => {
-                    const t = parseLbXml(text);
-                    if (t) { setMovieTitle(t); saveMovieCache(t); }
-                })
-                .catch(() => {
-                    if (!cached && lbTitle) lbTitle.textContent = 'unavailable';
-                })
-        );
+    // proxies can be flaky on github pages, so try a few with a short timeout each
+    (async () => {
+        const attempts = [
+            { url: `https://corsproxy.io/?${encodeURIComponent(lbUrl)}`, as: 'text' },
+            { url: `https://api.allorigins.win/raw?url=${encodeURIComponent(lbUrl)}`, as: 'text' },
+            { url: `https://api.allorigins.win/get?url=${encodeURIComponent(lbUrl)}`, as: 'json' },
+            { url: `https://r.jina.ai/http://${lbUrl.replace(/^https?:\/\//, '')}`, as: 'text' },
+        ];
+
+        for (const a of attempts) {
+            try {
+                const data = await fetchWithTimeout(a.url, 7000, a.as);
+                const xmlText = a.as === 'json' ? (data?.contents || '') : String(data || '');
+                const t = xmlText ? parseLbXml(xmlText) : null;
+                if (t) { setMovieTitle(t); saveMovieCache(t); return; }
+            } catch (_) {}
+        }
+
+        if (!cached && lbTitle) lbTitle.textContent = 'unavailable';
+    })();
 
     // last.fm status line — "now listening" or "last played"
     const lfmTitle  = document.getElementById('lfm-title');

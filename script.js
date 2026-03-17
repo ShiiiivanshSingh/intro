@@ -6,6 +6,7 @@ const CONFIG = {
     lfmUser:     'sh1vanshs2ngh',
     lfmKey:      '0827762c08a7c993f5249162a5805cf1',
     letterboxd:  'ShivanshSingh',
+    lbProxy:     '',
     birthDate:   '2005-07-08',
     graphColors: { light: 'D6536D', dark: '75a5fe' },
 
@@ -319,9 +320,9 @@ function initLiveData() {
     // proxies can be flaky on github pages, so try a few with a short timeout each
     (async () => {
         const attempts = [
+            ...(CONFIG.lbProxy ? [{ url: `${CONFIG.lbProxy}?url=${encodeURIComponent(lbUrl)}`, as: 'text' }] : []),
             { url: `https://api.allorigins.win/raw?url=${encodeURIComponent(lbUrl)}`, as: 'text' },
             { url: `https://api.allorigins.win/get?url=${encodeURIComponent(lbUrl)}`, as: 'json' },
-            { url: `https://r.jina.ai/${lbUrl}`, as: 'text' },
         ];
 
         for (const a of attempts) {
@@ -333,7 +334,14 @@ function initLiveData() {
             } catch (_) {}
         }
 
-        if (!cached && lbTitle) lbTitle.textContent = 'unavailable';
+        // if you see this on github pages: public proxies are flaky (403/408/422 etc)
+        // fix: create a cloudflare worker that fetches the rss + adds `access-control-allow-origin: *`
+        // then set `CONFIG.lbProxy` (top of this file) to `https://<your-worker>.workers.dev`
+        // finally hard refresh or unregister the service worker once so the new script loads
+        if (!cached) {
+            if (lbTitle) lbTitle.textContent = 'submarine';
+            console.warn('[last watched] using fallback title. set CONFIG.lbProxy to your worker url for a reliable live fix.');
+        }
     })();
 
     // last.fm status line — "now listening" or "last played"

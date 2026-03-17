@@ -339,7 +339,7 @@ function initLiveData() {
         // then set `CONFIG.lbProxy` (top of this file) to `https://<your-worker>.workers.dev`
         // finally hard refresh or unregister the service worker once so the new script loads
         if (!cached) {
-            if (lbTitle) lbTitle.textContent = 'submarine';
+            if (lbTitle) lbTitle.textContent = 'Submarine 2010';
             console.warn('[last watched] using fallback title. set CONFIG.lbProxy to your worker url for a reliable live fix.');
         }
     })();

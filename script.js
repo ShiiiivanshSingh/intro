@@ -1,13 +1,15 @@
 'use strict';
 
-
 const CONFIG = {
     github:      'ShiiiivanshSingh',
     lfmUser:     'sh1vanshs2ngh',
     lfmKey:      '0827762c08a7c993f5249162a5805cf1',
     letterboxd:  'ShivanshSingh',
     lbProxy:     'https://letterbocd-proxy.shivanshpratapsingh0807.workers.dev',
+    workerBase:  'https://letterbocd-proxy.shivanshpratapsingh0807.workers.dev',
+    resumeUrl:   'https://drive.google.com/file/d/1UcP-fjhUGukAh1ytxd-TiJlD5j7Bo_ds/view?usp=sharing',
     birthDate:   '2005-07-08',
+    tabOpenTime: Date.now(),
     graphColors: { light: 'D6536D', dark: '75a5fe' },
 
     topFilms: [
@@ -17,6 +19,23 @@ const CONFIG = {
         { title: 'adventures in babysitting',        year: '1987'},
         { title: 'sleepless in seattle',             year: '1993'},
         { title: 'a girl walks home alone at night', year: '2014'},
+    ],
+
+    fortunes: [
+        '"Any fool can write code that a computer can understand. Good programmers write code that humans can understand." — Fowler',
+        '"First, solve the problem. Then, write the code." — Johnson',
+        '"In cinema, you do not add your dreams to reality; you make your dreams real." — Godard',
+        '"The best programs are the ones written when the programmer is supposed to be working on something else." — Blandy',
+        '"Music gives a soul to the universe, wings to the mind, flight to the imagination." — Plato',
+        '"Simplicity is the ultimate sophistication." — da Vinci',
+        '"It\'s not a bug – it\'s an undocumented feature." — unknown',
+        '"Talk is cheap. Show me the code." — Torvalds',
+        '"A film is never really good unless the camera is an eye in the head of a poet." — Welles',
+        '"The purpose of abstraction is not to be vague, but to create a new semantic level." — Dijkstra',
+        '"Cinema is a mirror by which we often see ourselves." — Scorsese',
+        '"Lo-fi is not lo-quality, it\'s lo-distraction." — unknown',
+        '"Good code is its own best documentation." — McConnell',
+        '"Every artist dips his brush in his own soul." — Ward Beecher',
     ],
 
     secretCommands: {
@@ -40,6 +59,11 @@ const CONFIG = {
         invert:    'invert',
         rage:      'rage',
         sudo:      'sudo',
+        resume:    'resume',
+        ascii:     'ascii',
+        uptime:    'uptime',
+        fortune:   'fortune',
+        hack:      'hack',
     },
 
     movieCacheTTL: 6 * 60 * 60 * 1000,
@@ -53,9 +77,6 @@ function lfmFetch(params) {
     const base = `https://ws.audioscrobbler.com/2.0/?user=${CONFIG.lfmUser}&api_key=${CONFIG.lfmKey}&format=json`;
     return fetch(`${base}&${params}`).then(r => { if (!r.ok) throw new Error(String(r.status)); return r.json(); });
 }
-
-
-// ─── small helpers ────────────────────────────────────────────
 
 function spawnHearts(count = 4, sizeMult = 1) {
     if (document.querySelectorAll('.heart').length >= 12) return;
@@ -99,6 +120,7 @@ function runTerminal(lines, delayMs = 220) {
     const timer = setInterval(() => {
         if (i >= lines.length) { clearInterval(timer); return; }
         out.innerHTML += lines[i++] + '<br>';
+        out.scrollTop = out.scrollHeight;
     }, delayMs);
 
     return () => {
@@ -107,9 +129,6 @@ function runTerminal(lines, delayMs = 220) {
         out.innerHTML = '';
     };
 }
-
-
-// ─── theme toggle ─────────────────────────────────────────────
 
 function initTheme() {
     const btn   = el('theme-btn');
@@ -146,9 +165,6 @@ function initTheme() {
         document.body.style.overflow = 'hidden';
     });
 }
-
-
-// ─── nav stuff ────────────────────────────────────────────────
 
 function initNavigation() {
     const bar      = el('scroll-bar');
@@ -196,9 +212,6 @@ function initNavigation() {
     }
 }
 
-
-// ─── custom cursor ────────────────────────────────────────────
-
 function initCursor() {
     if (!window.matchMedia('(pointer: fine)').matches) return;
 
@@ -227,9 +240,6 @@ function initCursor() {
         node.addEventListener('mouseleave', () => ring.classList.remove('big'));
     });
 }
-
-
-// ─── live data ────────────────────────────────────────────────
 
 function initLiveData() {
 
@@ -286,7 +296,7 @@ function initLiveData() {
         } catch (_) {
             return null;
         }
-        if (xml.querySelector('parsererror')) return null;
+        if (xml.querySelector('parseerror')) return null;
 
         for (const item of xml.querySelectorAll('item')) {
             const raw = item.querySelector('title')?.textContent || '';
@@ -404,8 +414,21 @@ function initLiveData() {
     return () => { if (ageTicker !== null) clearInterval(ageTicker); };
 }
 
+function initVisitorCounter() {
+    const counterEl = el('visitor-count');
+    if (!counterEl) return;
 
-// ─── easter eggs + secret password commands ───────────────────
+    fetch(`${CONFIG.workerBase}/visitors`)
+        .then(r => r.ok ? r.json() : null)
+        .then(data => {
+            if (data && typeof data.count === 'number') {
+                counterEl.textContent = data.count.toLocaleString();
+            }
+        })
+        .catch(() => {
+            counterEl.closest('.visitor-line')?.remove();
+        });
+}
 
 function initEasterEggs() {
 
@@ -505,6 +528,138 @@ function initEasterEggs() {
         ], 280);
         const exitBtn = el('debug-exit');
         if (exitBtn) exitBtn.onclick = teardown;
+    }
+
+    function cmdResume() {
+        window.open(CONFIG.resumeUrl, '_blank');
+    }
+
+    function cmdAscii() {
+        const art = [
+            '> loading identity...',
+            '> ',
+            '>  ███████╗██╗  ██╗██╗██╗   ██╗ █████╗ ███╗   ██╗███████╗██╗  ██╗',
+            '>  ██╔════╝██║  ██║██║██║   ██║██╔══██╗████╗  ██║██╔════╝██║  ██║',
+            '>  ███████╗███████║██║██║   ██║███████║██╔██╗ ██║███████╗███████║',
+            '>  ╚════██║██╔══██║██║╚██╗ ██╔╝██╔══██║██║╚██╗██║╚════██║██╔══██║',
+            '>  ███████║██║  ██║██║ ╚████╔╝ ██║  ██║██║ ╚████║███████║██║  ██║',
+            '>  ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝',
+            '> ',
+            '>  Shivansh Pratap Singh — CS student, builder, cinephile.',
+            '> _',
+        ];
+        const teardown = runTerminal(art, 80);
+        const exitBtn = el('debug-exit');
+        if (exitBtn) exitBtn.onclick = teardown;
+    }
+
+    function cmdUptime() {
+        const ms      = Date.now() - CONFIG.tabOpenTime;
+        const secs    = Math.floor(ms / 1000);
+        const mins    = Math.floor(secs / 60);
+        const hrs     = Math.floor(mins / 60);
+        const display = hrs > 0
+            ? `${hrs}h ${mins % 60}m ${secs % 60}s`
+            : mins > 0
+                ? `${mins}m ${secs % 60}s`
+                : `${secs}s`;
+
+        const teardown = runTerminal([
+            '> querying tab uptime...',
+            `> tab has been open for: ${display}`,
+            '> you really like it here, huh?',
+            '> _',
+        ], 260);
+        const exitBtn = el('debug-exit');
+        if (exitBtn) exitBtn.onclick = teardown;
+    }
+
+    function cmdFortune() {
+        const quote = CONFIG.fortunes[Math.floor(Math.random() * CONFIG.fortunes.length)];
+        const teardown = runTerminal([
+            '> consulting the oracle...',
+            '> ',
+            `> ${quote}`,
+            '> _',
+        ], 200);
+        const exitBtn = el('debug-exit');
+        if (exitBtn) exitBtn.onclick = teardown;
+    }
+
+    function cmdHack() {
+        const ghUser = CONFIG.github;
+        const lines = [
+            '> initiating connection to github.com...',
+            '> bypassing rate limits... [OK]',
+            '> decrypting profile data...',
+            '> pulling stats for: ' + ghUser,
+            '> [████████████████████] 100%',
+        ];
+
+        const term = el('debug-terminal');
+        const out  = el('debug-output');
+        if (!term || !out) return;
+        term.classList.add('open');
+        out.innerHTML = '';
+
+        let i = 0;
+        const phase1 = setInterval(() => {
+            if (i >= lines.length) {
+                clearInterval(phase1);
+                fetch(`https://api.github.com/users/${ghUser}`)
+                    .then(r => r.ok ? r.json() : null)
+                    .then(data => {
+                        return fetch(`https://api.github.com/users/${ghUser}/repos?per_page=100`)
+                            .then(r => r.ok ? r.json() : [])
+                            .then(repos => {
+                                const stars = repos.reduce((sum, r) => sum + (r.stargazers_count || 0), 0);
+                                const statsLines = data ? [
+                                    '> ',
+                                    `> name       : ${data.name || ghUser}`,
+                                    `> followers  : ${data.followers}`,
+                                    `> following  : ${data.following}`,
+                                    `> public repos: ${data.public_repos}`,
+                                    `> total stars: ${stars}`,
+                                    `> joined     : ${new Date(data.created_at).toDateString()}`,
+                                    `> bio        : ${data.bio || '—'}`,
+                                    '> ',
+                                    '> access level: visitor (read-only)',
+                                    '> intrusion detected — closing shell.',
+                                    '> _',
+                                ] : [
+                                    '> error: github API rate limit or user not found',
+                                    '> _',
+                                ];
+                                let j = 0;
+                                const phase2 = setInterval(() => {
+                                    if (j >= statsLines.length) { clearInterval(phase2); return; }
+                                    out.innerHTML += statsLines[j++] + '<br>';
+                                    out.scrollTop = out.scrollHeight;
+                                }, 180);
+
+                                const exitBtn = el('debug-exit');
+                                if (exitBtn) exitBtn.onclick = () => {
+                                    clearInterval(phase2);
+                                    term.classList.remove('open');
+                                    out.innerHTML = '';
+                                };
+                            });
+                    })
+                    .catch(() => {
+                        out.innerHTML += '> error: failed to reach github API<br>> _<br>';
+                    });
+                return;
+            }
+            out.innerHTML += lines[i++] + '<br>';
+            out.scrollTop = out.scrollHeight;
+        }, 260);
+
+        const exitBtn = el('debug-exit');
+        if (exitBtn) exitBtn.onclick = () => {
+            clearInterval(phase1);
+            term.classList.remove('open');
+            out.innerHTML = '';
+        };
     }
 
     function cmdHint() {
@@ -617,6 +772,11 @@ function initEasterEggs() {
         invert:   () => { document.documentElement.style.filter = 'invert(1) hue-rotate(180deg)'; setTimeout(() => document.documentElement.style.filter = '', 3000); },
         rage:     () => { document.body.classList.add('raging'); setTimeout(() => document.body.classList.remove('raging'), 1000); },
         sudo:     cmdSudo,
+        resume:   cmdResume,
+        ascii:    cmdAscii,
+        uptime:   cmdUptime,
+        fortune:  cmdFortune,
+        hack:     cmdHack,
     };
 
     const pwModal = el('pw-modal');
@@ -678,9 +838,6 @@ function initEasterEggs() {
     }
 }
 
-
-// ─── footer ───────────────────────────────────────────────────
-
 function initFooter() {
     const heartBtn      = el('heart-btn');
     const spotifyReveal = el('spotify-reveal');
@@ -713,9 +870,6 @@ function initFooter() {
     }
 }
 
-
-// ─── boot ─────────────────────────────────────────────────────
-
 document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.classList.add('ready');
     initTheme();
@@ -724,6 +878,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initLiveData();
     initEasterEggs();
     initFooter();
+    initVisitorCounter();
 
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () =>

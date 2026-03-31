@@ -6,7 +6,7 @@ const CONFIG = {
     lfmUser:     'sh1vanshs2ngh',
     lfmKey:      '0827762c08a7c993f5249162a5805cf1',
     letterboxd:  'ShivanshSingh',
-    lbProxy:     '',
+    lbProxy:     'https://letterbocd-proxy.shivanshpratapsingh0807.workers.dev',
     birthDate:   '2005-07-08',
     graphColors: { light: 'D6536D', dark: '75a5fe' },
 
@@ -14,12 +14,12 @@ const CONFIG = {
     
     // watchlist 
     topFilms: [
-        { title: "my night at maud's",                  year: '1969' },
-        { title: 'adventures in babysitting',            year: '1987' },
-        { title: 'the apartment',                        year: '1960' },
-        { title: 'a girl walks home alone at night',     year: '2014' },
-        { title: 'groundhog day',                        year: '1993' },
-        { title: 'magnolia',                             year: '1999' },
+        { title: "my night at maud's",               year: '1969'},
+        { title: 'petite maman',                     year: '2021'},
+        { title: 'the apartment',                    year: '1960'},
+        { title: 'adventures in babysitting',        year: '1987'},
+        { title: 'sleepless in seattle',             year: '1993'},
+        { title: 'a girl walks home alone at night', year: '2014'},
     ],
 
     // what each typed word actually does
@@ -252,9 +252,33 @@ function initLiveData() {
     }
 
     // letterboxd last-watched film
-    // we cache the result so it doesn't hit the proxy on every page load
     const lbTitle = document.getElementById('lb-title');
     const lbUrl   = `https://letterboxd.com/${CONFIG.letterboxd}/rss/`;
+
+    // ── loading animation ──────────────────────────────────────
+    // show a pulsing ellipsis while we wait for the fetch
+    function showMovieLoading() {
+        if (!lbTitle) return;
+        lbTitle.innerHTML = '<span class="lb-loading">fetching<span class="lb-dots"><span>.</span><span>.</span><span>.</span></span></span>';
+
+        // inject the keyframe styles once
+        if (!document.getElementById('lb-loading-style')) {
+            const s = document.createElement('style');
+            s.id = 'lb-loading-style';
+            s.textContent = `
+                .lb-loading { opacity: .5; font-style: italic; }
+                .lb-dots span { animation: lbdot 1.2s infinite; opacity: 0; }
+                .lb-dots span:nth-child(2) { animation-delay: .2s; }
+                .lb-dots span:nth-child(3) { animation-delay: .4s; }
+                @keyframes lbdot {
+                    0%, 80%, 100% { opacity: 0; }
+                    40%           { opacity: 1; }
+                }
+            `;
+            document.head.appendChild(s);
+        }
+    }
+    // ──────────────────────────────────────────────────────────
 
     function fetchWithTimeout(url, ms = 7000, as = 'text') {
         const ctrl = new AbortController();
@@ -294,9 +318,7 @@ function initLiveData() {
                 title,
                 ts: Date.now(),
             }));
-        } catch (_) {
-            // localStorage might be blocked, that's fine
-        }
+        } catch (_) {}
     }
 
     function loadMovieCache() {
@@ -304,7 +326,6 @@ function initLiveData() {
             const raw = localStorage.getItem(MOVIE_CACHE_KEY);
             if (!raw) return null;
             const { title, ts } = JSON.parse(raw);
-            // treat it as stale after the configured TTL
             if (Date.now() - ts > CONFIG.movieCacheTTL) return null;
             return title;
         } catch (_) {
@@ -312,15 +333,20 @@ function initLiveData() {
         }
     }
 
-    // show cached value instantly if we have one
+    // show cached value instantly if we have one, otherwise show loading
     const cached = loadMovieCache();
-    if (cached) setMovieTitle(cached);
+    if (cached) {
+        setMovieTitle(cached);
+    } else {
+        showMovieLoading();
+    }
 
-    // then fetch fresh data in the background
-    // proxies can be flaky on github pages, so try a few with a short timeout each
+    // fetch fresh data in the background
     (async () => {
         const attempts = [
-            ...(CONFIG.lbProxy ? [{ url: `${CONFIG.lbProxy}?url=${encodeURIComponent(lbUrl)}`, as: 'text' }] : []),
+            // your cloudflare worker — no ?url= needed, it hardcodes the RSS URL
+            ...(CONFIG.lbProxy ? [{ url: CONFIG.lbProxy, as: 'text' }] : []),
+            // public proxy fallbacks
             { url: `https://api.allorigins.win/raw?url=${encodeURIComponent(lbUrl)}`, as: 'text' },
             { url: `https://api.allorigins.win/get?url=${encodeURIComponent(lbUrl)}`, as: 'json' },
         ];
@@ -334,13 +360,9 @@ function initLiveData() {
             } catch (_) {}
         }
 
-        // if you see this on github pages: public proxies are flaky (403/408/422 etc)
-        // fix: create a cloudflare worker that fetches the rss + adds `access-control-allow-origin: *`
-        // then set `CONFIG.lbProxy` (top of this file) to `https://<your-worker>.workers.dev`
-        // finally hard refresh or unregister the service worker once so the new script loads
+        // all attempts failed
         if (!cached) {
-            if (lbTitle) lbTitle.textContent = 'Submarine 2010';
-            console.warn('[last watched] using fallback title. set CONFIG.lbProxy to your worker url for a reliable live fix.');
+            if (lbTitle) lbTitle.textContent = 'unavailable';
         }
     })();
 
@@ -385,7 +407,7 @@ function initLiveData() {
             document.getElementById('lfm-shelf').innerHTML = '<li style="opacity:.35">unavailable</li>';
         });
 
-    // films shelf is just static config data
+    // films shelf — static config data
     document.getElementById('lb-shelf').innerHTML = CONFIG.topFilms.map(f =>
         `<li><span class="shelf-film">${f.title}</span><span class="shelf-sub">${f.year}</span></li>`
     ).join('');
@@ -551,8 +573,8 @@ function initEasterEggs() {
     function cmdFilms() {
         openOverlay('overlay-films');
         document.getElementById('films-list').innerHTML = CONFIG.topFilms.map((f, i) =>
-            `<div class="info-row"><span class="info-key">${i + 1}. ${f.title}</span><span class="info-val">${f.year}</span></div>`
-        ).join('');
+`<div class="info-row"><span class="info-key">${i + 1}. ${f.title}</span><span class="info-val">${f.year}</span></div>`
+                                                                             ).join('');
     }
 
     function cmdWhoami() {

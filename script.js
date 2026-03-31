@@ -10,9 +10,6 @@ const CONFIG = {
     birthDate:   '2005-07-08',
     graphColors: { light: 'D6536D', dark: '75a5fe' },
 
-
-    
-    // watchlist 
     topFilms: [
         { title: "my night at maud's",               year: '1969'},
         { title: 'petite maman',                     year: '2021'},
@@ -22,7 +19,6 @@ const CONFIG = {
         { title: 'a girl walks home alone at night', year: '2014'},
     ],
 
-    // what each typed word actually does
     secretCommands: {
         chungus:   'rickroll',
         shivansh:  'love',
@@ -46,17 +42,21 @@ const CONFIG = {
         sudo:      'sudo',
     },
 
-    // how long to cache the last-watched movie (6 hours in ms)
     movieCacheTTL: 6 * 60 * 60 * 1000,
 };
 
-// key we use in localStorage for the cached movie
 const MOVIE_CACHE_KEY = 'lb_last_watched';
+
+function el(id) { return document.getElementById(id); }
+
+function lfmFetch(params) {
+    const base = `https://ws.audioscrobbler.com/2.0/?user=${CONFIG.lfmUser}&api_key=${CONFIG.lfmKey}&format=json`;
+    return fetch(`${base}&${params}`).then(r => { if (!r.ok) throw new Error(String(r.status)); return r.json(); });
+}
 
 
 // ─── small helpers ────────────────────────────────────────────
 
-// spawn floating hearts — bails early if too many are already on screen
 function spawnHearts(count = 4, sizeMult = 1) {
     if (document.querySelectorAll('.heart').length >= 12) return;
     for (let i = 0; i < count; i++) {
@@ -74,24 +74,25 @@ function spawnHearts(count = 4, sizeMult = 1) {
     }
 }
 
-// open any overlay by id, optionally close it after X ms
 function openOverlay(id, autoCloseMs = 0) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.classList.add('open');
-    if (autoCloseMs > 0) setTimeout(() => el.classList.remove('open'), autoCloseMs);
+    const node = el(id);
+    if (!node) return;
+    node.classList.add('open');
+    if (autoCloseMs > 0) setTimeout(() => node.classList.remove('open'), autoCloseMs);
 }
 
-// show the password box and focus the input
 function openPasswordModal() {
-    document.getElementById('pw-modal').classList.add('open');
-    setTimeout(() => document.getElementById('pw-input').focus(), 50);
+    const modal = el('pw-modal');
+    const input = el('pw-input');
+    if (!modal || !input) return;
+    modal.classList.add('open');
+    setTimeout(() => input.focus(), 50);
 }
 
-// fake terminal effect — returns a function call to clean up
 function runTerminal(lines, delayMs = 220) {
-    const term = document.getElementById('debug-terminal');
-    const out  = document.getElementById('debug-output');
+    const term = el('debug-terminal');
+    const out  = el('debug-output');
+    if (!term || !out) return () => {};
     term.classList.add('open');
     out.innerHTML = '';
     let i = 0;
@@ -111,38 +112,34 @@ function runTerminal(lines, delayMs = 220) {
 // ─── theme toggle ─────────────────────────────────────────────
 
 function initTheme() {
-    const btn   = document.getElementById('theme-btn');
-    const icon  = document.getElementById('theme-icon');
-    const bunny = document.getElementById('bunny-btn');
-    const egg   = document.getElementById('easter-egg');
-    let clicks  = 0;
+    const btn   = el('theme-btn');
+    const icon  = el('theme-icon');
+    const bunny = el('bunny-btn');
+    const egg   = el('easter-egg');
+    if (!btn || !icon || !bunny || !egg) return;
+    let clicks = 0;
 
     function applyTheme(theme) {
         document.documentElement.setAttribute('data-theme', theme);
-        // swap icon
         icon.innerHTML = theme === 'dark'
             ? '<i class="fas fa-moon"></i>'
             : '<i class="fas fa-sun"></i>';
-        // swap graph colour too
-        const graph = document.getElementById('gh-graph');
+        const graph = el('gh-graph');
         if (graph) graph.src = `https://ghchart.rshah.org/${CONFIG.graphColors[theme]}/${CONFIG.github}`;
     }
 
-    // restore last preference, default to dark
     applyTheme(localStorage.getItem('theme') || 'dark');
 
     btn.addEventListener('click', () => {
         const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         localStorage.setItem('theme', next);
         applyTheme(next);
-        // secret: 10 clicks reveals the bunny
         if (++clicks >= 10) {
             clicks = 0;
             bunny.classList.add('visible');
         }
     });
 
-    // bunny click → easter egg
     bunny.addEventListener('click', () => {
         bunny.classList.remove('visible');
         egg.classList.add('open');
@@ -154,72 +151,69 @@ function initTheme() {
 // ─── nav stuff ────────────────────────────────────────────────
 
 function initNavigation() {
-    const bar      = document.getElementById('scroll-bar');
+    const bar      = el('scroll-bar');
     const hdr      = document.querySelector('.hdr');
     const navLinks = document.querySelectorAll('nav a[href^="#"]');
     const sections = [...navLinks]
         .map(a => document.querySelector(a.getAttribute('href')))
         .filter(Boolean);
 
-    window.addEventListener('scroll', () => {
-        // scroll progress bar
-        const max = document.documentElement.scrollHeight - window.innerHeight;
-        bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+    if (bar && hdr) {
+        window.addEventListener('scroll', () => {
+            const max = document.documentElement.scrollHeight - window.innerHeight;
+            bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+            hdr.classList.toggle('scrolled', window.scrollY > 10);
 
-        // shadow on header when scrolled
-        hdr.classList.toggle('scrolled', window.scrollY > 10);
+            let current = '';
+            sections.forEach(sec => {
+                if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+            });
+            navLinks.forEach(a => {
+                a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+            });
+        }, { passive: true });
+    }
 
-        // highlight whichever section is in view
-        let current = '';
-        sections.forEach(sec => {
-            if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+    const hamburger = el('hamburger');
+    const mobileNav = el('mobile-nav');
+
+    if (hamburger && mobileNav) {
+        hamburger.addEventListener('click', () => {
+            const isOpen = mobileNav.classList.toggle('open');
+            hamburger.classList.toggle('open', isOpen);
+            hamburger.setAttribute('aria-expanded', String(isOpen));
+            mobileNav.setAttribute('aria-hidden', String(!isOpen));
         });
-        navLinks.forEach(a => {
-            a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+                hamburger.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+                mobileNav.setAttribute('aria-hidden', 'true');
+            });
         });
-    }, { passive: true });
-
-    // mobile hamburger
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobile-nav');
-
-    hamburger.addEventListener('click', () => {
-        const isOpen = mobileNav.classList.toggle('open');
-        hamburger.classList.toggle('open', isOpen);
-        hamburger.setAttribute('aria-expanded', String(isOpen));
-        mobileNav.setAttribute('aria-hidden', String(!isOpen));
-    });
-
-    // close drawer when a link is tapped
-    mobileNav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            mobileNav.classList.remove('open');
-            hamburger.classList.remove('open');
-            hamburger.setAttribute('aria-expanded', 'false');
-            mobileNav.setAttribute('aria-hidden', 'true');
-        });
-    });
+    }
 }
 
 
 // ─── custom cursor ────────────────────────────────────────────
 
 function initCursor() {
-    // only bother on actual pointer devices
     if (!window.matchMedia('(pointer: fine)').matches) return;
 
-    const dot  = document.getElementById('cur-dot');
-    const ring = document.getElementById('cur-ring');
+    const dot  = el('cur-dot');
+    const ring = el('cur-ring');
+    if (!dot || !ring) return;
+
     let rx = -20, ry = -20, mx = -20, my = -20;
 
-    // dot snaps immediately
     document.addEventListener('mousemove', e => {
         mx = e.clientX; my = e.clientY;
         dot.style.left = mx + 'px';
         dot.style.top  = my + 'px';
     });
 
-    // ring lags a little behind via lerp
     (function loop() {
         rx += (mx - rx) * 0.14;
         ry += (my - ry) * 0.14;
@@ -228,41 +222,35 @@ function initCursor() {
         requestAnimationFrame(loop);
     })();
 
-    // ring grows over clickable things
-    document.querySelectorAll('a, button').forEach(el => {
-        el.addEventListener('mouseenter', () => ring.classList.add('big'));
-        el.addEventListener('mouseleave', () => ring.classList.remove('big'));
+    document.querySelectorAll('a, button').forEach(node => {
+        node.addEventListener('mouseenter', () => ring.classList.add('big'));
+        node.addEventListener('mouseleave', () => ring.classList.remove('big'));
     });
 }
 
 
-// ─── live data (letterboxd, last.fm, age counter) ─────────────
+// ─── live data ────────────────────────────────────────────────
 
 function initLiveData() {
 
-    // age — ticks every 50ms so you can watch the decimals go lol
-    const ageEl = document.getElementById('age');
+    const ageEl = el('age');
+    let ageTicker = null;
     if (ageEl) {
         const birth = new Date(CONFIG.birthDate);
         const tick  = () => {
             ageEl.textContent = ((Date.now() - birth) / (1000 * 60 * 60 * 24 * 365.2425)).toFixed(9);
         };
         tick();
-        setInterval(tick, 50);
+        ageTicker = setInterval(tick, 50);
     }
 
-    // letterboxd last-watched film
-    const lbTitle = document.getElementById('lb-title');
+    const lbTitle = el('lb-title');
     const lbUrl   = `https://letterboxd.com/${CONFIG.letterboxd}/rss/`;
 
-    // ── loading animation ──────────────────────────────────────
-    // show a pulsing ellipsis while we wait for the fetch
     function showMovieLoading() {
         if (!lbTitle) return;
         lbTitle.innerHTML = '<span class="lb-loading">fetching<span class="lb-dots"><span>.</span><span>.</span><span>.</span></span></span>';
-
-        // inject the keyframe styles once
-        if (!document.getElementById('lb-loading-style')) {
+        if (!el('lb-loading-style')) {
             const s = document.createElement('style');
             s.id = 'lb-loading-style';
             s.textContent = `
@@ -278,7 +266,6 @@ function initLiveData() {
             document.head.appendChild(s);
         }
     }
-    // ──────────────────────────────────────────────────────────
 
     function fetchWithTimeout(url, ms = 7000, as = 'text') {
         const ctrl = new AbortController();
@@ -292,7 +279,15 @@ function initLiveData() {
     }
 
     function parseLbXml(text) {
-        const xml = new DOMParser().parseFromString(text, 'text/xml');
+        if (!text || typeof text !== 'string' || text.trim().length === 0) return null;
+        let xml;
+        try {
+            xml = new DOMParser().parseFromString(text, 'text/xml');
+        } catch (_) {
+            return null;
+        }
+        if (xml.querySelector('parsererror')) return null;
+
         for (const item of xml.querySelectorAll('item')) {
             const raw = item.querySelector('title')?.textContent || '';
             if (!raw) continue;
@@ -309,15 +304,12 @@ function initLiveData() {
     }
 
     function setMovieTitle(title) {
-        if (lbTitle && title) lbTitle.textContent = title;
+        if (lbTitle && title && typeof title === 'string') lbTitle.textContent = title;
     }
 
     function saveMovieCache(title) {
         try {
-            localStorage.setItem(MOVIE_CACHE_KEY, JSON.stringify({
-                title,
-                ts: Date.now(),
-            }));
+            localStorage.setItem(MOVIE_CACHE_KEY, JSON.stringify({ title, ts: Date.now() }));
         } catch (_) {}
     }
 
@@ -325,15 +317,15 @@ function initLiveData() {
         try {
             const raw = localStorage.getItem(MOVIE_CACHE_KEY);
             if (!raw) return null;
-            const { title, ts } = JSON.parse(raw);
-            if (Date.now() - ts > CONFIG.movieCacheTTL) return null;
-            return title;
+            const parsed = JSON.parse(raw);
+            if (!parsed || typeof parsed.title !== 'string') return null;
+            if (Date.now() - parsed.ts > CONFIG.movieCacheTTL) return null;
+            return parsed.title;
         } catch (_) {
             return null;
         }
     }
 
-    // show cached value instantly if we have one, otherwise show loading
     const cached = loadMovieCache();
     if (cached) {
         setMovieTitle(cached);
@@ -341,12 +333,9 @@ function initLiveData() {
         showMovieLoading();
     }
 
-    // fetch fresh data in the background
     (async () => {
         const attempts = [
-            // your cloudflare worker — no ?url= needed, it hardcodes the RSS URL
             ...(CONFIG.lbProxy ? [{ url: CONFIG.lbProxy, as: 'text' }] : []),
-            // public proxy fallbacks
             { url: `https://api.allorigins.win/raw?url=${encodeURIComponent(lbUrl)}`, as: 'text' },
             { url: `https://api.allorigins.win/get?url=${encodeURIComponent(lbUrl)}`, as: 'json' },
         ];
@@ -354,63 +343,65 @@ function initLiveData() {
         for (const a of attempts) {
             try {
                 const data = await fetchWithTimeout(a.url, 7000, a.as);
-                const xmlText = a.as === 'json' ? (data?.contents || '') : String(data || '');
-                const t = xmlText ? parseLbXml(xmlText) : null;
+                const xmlText = a.as === 'json'
+                    ? (data && typeof data.contents === 'string' ? data.contents : '')
+                    : (typeof data === 'string' ? data : '');
+                const t = parseLbXml(xmlText);
                 if (t) { setMovieTitle(t); saveMovieCache(t); return; }
             } catch (_) {}
         }
 
-        // all attempts failed
-        if (!cached) {
-            if (lbTitle) lbTitle.textContent = 'unavailable';
-        }
+        if (!cached && lbTitle) lbTitle.textContent = 'unavailable';
     })();
 
-    // last.fm status line — "now listening" or "last played"
-    const lfmTitle  = document.getElementById('lfm-title');
-    const lfmArtist = document.getElementById('lfm-artist');
-    const lfmLabel  = document.getElementById('lfm-label');
+    const lfmTitleEl  = el('lfm-title');
+    const lfmArtistEl = el('lfm-artist');
+    const lfmLabelEl  = el('lfm-label');
 
-    fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${CONFIG.lfmUser}&api_key=${CONFIG.lfmKey}&format=json&limit=1`)
-        .then(r => r.json())
+    lfmFetch('method=user.getrecenttracks&limit=1')
         .then(d => {
             const track = d?.recenttracks?.track?.[0];
             if (!track) return;
             const isNow = track['@attr']?.nowplaying === 'true';
-            lfmTitle.textContent  = track.name;
-            lfmArtist.textContent = '— ' + track.artist['#text'];
+            if (lfmTitleEl)  lfmTitleEl.textContent  = track.name;
+            if (lfmArtistEl) lfmArtistEl.textContent = '— ' + track.artist['#text'];
             if (isNow) {
-                if (lfmLabel) lfmLabel.textContent = 'now listening';
-                const dot = lfmTitle.closest('.status-line')?.querySelector('.sdot');
+                if (lfmLabelEl) lfmLabelEl.textContent = 'now listening';
+                const dot = lfmTitleEl?.closest('.status-line')?.querySelector('.sdot');
                 if (dot) dot.style.animation = 'pulse 1s ease-in-out infinite';
             } else {
-                if (lfmLabel) lfmLabel.textContent = 'last played';
+                if (lfmLabelEl) lfmLabelEl.textContent = 'last played';
             }
         })
         .catch(() => {});
 
-    // last.fm shelf — 6 most recent tracks
-    fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${CONFIG.lfmUser}&api_key=${CONFIG.lfmKey}&format=json&limit=6`)
-        .then(r => r.json())
+    const lfmShelf = el('lfm-shelf');
+    lfmFetch('method=user.getrecenttracks&limit=6')
         .then(d => {
             const tracks = d?.recenttracks?.track;
             if (!tracks?.length) throw new Error('empty');
-            document.getElementById('lfm-shelf').innerHTML = tracks.slice(0, 6).map(t => {
-                const isNow = t['@attr']?.nowplaying === 'true';
-                return `<li>
-                    <span class="shelf-track">${t.name}${isNow ? '<span class="shelf-now">▶ now</span>' : ''}</span>
-                    <span class="shelf-sub">${t.artist['#text']}</span>
-                </li>`;
-            }).join('');
+            if (lfmShelf) {
+                lfmShelf.innerHTML = tracks.slice(0, 6).map(t => {
+                    const isNow = t['@attr']?.nowplaying === 'true';
+                    return `<li>
+                        <span class="shelf-track">${t.name}${isNow ? '<span class="shelf-now">▶ now</span>' : ''}</span>
+                        <span class="shelf-sub">${t.artist['#text']}</span>
+                    </li>`;
+                }).join('');
+            }
         })
         .catch(() => {
-            document.getElementById('lfm-shelf').innerHTML = '<li style="opacity:.35">unavailable</li>';
+            if (lfmShelf) lfmShelf.innerHTML = '<li style="opacity:.35">unavailable</li>';
         });
 
-    // films shelf — static config data
-    document.getElementById('lb-shelf').innerHTML = CONFIG.topFilms.map(f =>
-        `<li><span class="shelf-film">${f.title}</span><span class="shelf-sub">${f.year}</span></li>`
-    ).join('');
+    const lbShelf = el('lb-shelf');
+    if (lbShelf) {
+        lbShelf.innerHTML = CONFIG.topFilms.map(f =>
+            `<li><span class="shelf-film">${f.title}</span><span class="shelf-sub">${f.year}</span></li>`
+        ).join('');
+    }
+
+    return () => { if (ageTicker !== null) clearInterval(ageTicker); };
 }
 
 
@@ -418,18 +409,18 @@ function initLiveData() {
 
 function initEasterEggs() {
 
-    // individual command handlers
-
     function cmdLove() {
-        const lp = document.getElementById('love-popup');
+        const lp = el('love-popup');
+        if (!lp) return;
         lp.classList.add('open');
         spawnHearts(10, 1);
         setTimeout(() => lp.classList.remove('open'), 2500);
     }
 
     function cmdMatrix() {
-        const overlay = document.getElementById('matrix-overlay');
-        const canvas  = document.getElementById('matrix-canvas');
+        const overlay = el('matrix-overlay');
+        const canvas  = el('matrix-canvas');
+        if (!overlay || !canvas) return;
         overlay.classList.add('open');
         canvas.width  = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -455,6 +446,7 @@ function initEasterEggs() {
             clearInterval(timer);
             overlay.classList.remove('open');
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            overlay.onclick = null;
         };
     }
 
@@ -494,7 +486,8 @@ function initEasterEggs() {
             '> session logged. have a good day.',
             '> _',
         ], 220);
-        document.getElementById('debug-exit').onclick = teardown;
+        const exitBtn = el('debug-exit');
+        if (exitBtn) exitBtn.onclick = teardown;
     }
 
     function cmdSudo() {
@@ -510,78 +503,89 @@ function initEasterEggs() {
             '> nice try. permission denied.',
             '> _',
         ], 280);
-        document.getElementById('debug-exit').onclick = teardown;
+        const exitBtn = el('debug-exit');
+        if (exitBtn) exitBtn.onclick = teardown;
     }
 
     function cmdHint() {
-        const modal = document.getElementById('hint-confirm');
+        const modal   = el('hint-confirm');
+        const yesBtn  = el('hint-yes');
+        const noBtn   = el('hint-no');
+        if (!modal || !yesBtn || !noBtn) return;
         modal.classList.add('open');
-        document.getElementById('hint-yes').onclick = () => {
+        yesBtn.onclick = () => {
             modal.classList.remove('open');
             setTimeout(() => openOverlay('commands-list'), 50);
         };
-        document.getElementById('hint-no').onclick = () => modal.classList.remove('open');
+        noBtn.onclick = () => modal.classList.remove('open');
     }
 
     function cmdSongs() {
         openOverlay('overlay-songs');
-        fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${CONFIG.lfmUser}&api_key=${CONFIG.lfmKey}&format=json&limit=10`)
-            .then(r => r.json())
+        const songsList = el('songs-list');
+        lfmFetch('method=user.getrecenttracks&limit=10')
             .then(d => {
                 const tracks = d?.recenttracks?.track;
                 if (!tracks?.length) throw new Error('empty');
-                document.getElementById('songs-list').innerHTML = tracks.slice(0, 10).map((t, i) => {
-                    const isNow = t['@attr']?.nowplaying === 'true';
-                    return `<div class="info-row">
-                        <span class="info-key">${isNow ? '▶' : (i + 1 + '.')} ${t.name}</span>
-                        <span class="info-val">${t.artist['#text']}</span>
-                    </div>`;
-                }).join('');
+                if (songsList) {
+                    songsList.innerHTML = tracks.slice(0, 10).map((t, i) => {
+                        const isNow = t['@attr']?.nowplaying === 'true';
+                        return `<div class="info-row">
+                            <span class="info-key">${isNow ? '▶' : (i + 1 + '.')} ${t.name}</span>
+                            <span class="info-val">${t.artist['#text']}</span>
+                        </div>`;
+                    }).join('');
+                }
             })
             .catch(() => {
-                document.getElementById('songs-list').innerHTML =
+                if (songsList) songsList.innerHTML =
                     '<div class="info-row"><span class="info-key">unavailable</span></div>';
             });
     }
 
     function cmdStats() {
         openOverlay('overlay-stats');
-        const base = `https://ws.audioscrobbler.com/2.0/?user=${CONFIG.lfmUser}&api_key=${CONFIG.lfmKey}&format=json`;
-        fetch(`${base}&method=user.getinfo`)
-            .then(r => r.json())
+        const statsList = el('stats-list');
+        lfmFetch('method=user.getinfo')
             .then(d => {
                 const u = d?.user;
                 if (!u) throw new Error('no user');
-                return fetch(`${base}&method=user.gettopartists&limit=3&period=overall`)
-                    .then(r2 => r2.json())
+                return lfmFetch('method=user.gettopartists&limit=3&period=overall')
                     .then(d2 => {
                         const top = d2?.topartists?.artist?.map(a => a.name).join(', ') || '—';
-                        document.getElementById('stats-list').innerHTML = `
-                            <div class="info-row"><span class="info-key">scrobbles</span><span class="info-val">${parseInt(u.playcount).toLocaleString()}</span></div>
-                            <div class="info-row"><span class="info-key">artists</span><span class="info-val">${parseInt(u.artist_count || 0).toLocaleString()}</span></div>
-                            <div class="info-row"><span class="info-key">tracks</span><span class="info-val">${parseInt(u.track_count || 0).toLocaleString()}</span></div>
-                            <div class="info-row"><span class="info-key">top artists</span><span class="info-val">${top}</span></div>
-                            <div class="info-row"><span class="info-key">member since</span><span class="info-val">${new Date(u.registered['#text'] * 1000).getFullYear()}</span></div>`;
+                        if (statsList) {
+                            statsList.innerHTML = `
+                                <div class="info-row"><span class="info-key">scrobbles</span><span class="info-val">${parseInt(u.playcount).toLocaleString()}</span></div>
+                                <div class="info-row"><span class="info-key">artists</span><span class="info-val">${parseInt(u.artist_count || 0).toLocaleString()}</span></div>
+                                <div class="info-row"><span class="info-key">tracks</span><span class="info-val">${parseInt(u.track_count || 0).toLocaleString()}</span></div>
+                                <div class="info-row"><span class="info-key">top artists</span><span class="info-val">${top}</span></div>
+                                <div class="info-row"><span class="info-key">member since</span><span class="info-val">${new Date(u.registered['#text'] * 1000).getFullYear()}</span></div>`;
+                        }
                     });
             })
             .catch(() => {
-                document.getElementById('stats-list').innerHTML =
+                if (statsList) statsList.innerHTML =
                     '<div class="info-row"><span class="info-key">unavailable</span></div>';
             });
     }
 
     function cmdFilms() {
         openOverlay('overlay-films');
-        document.getElementById('films-list').innerHTML = CONFIG.topFilms.map((f, i) =>
-`<div class="info-row"><span class="info-key">${i + 1}. ${f.title}</span><span class="info-val">${f.year}</span></div>`
-                                                                             ).join('');
+        const filmsList = el('films-list');
+        if (filmsList) {
+            filmsList.innerHTML = CONFIG.topFilms.map((f, i) =>
+                `<div class="info-row"><span class="info-key">${i + 1}. ${f.title}</span><span class="info-val">${f.year}</span></div>`
+            ).join('');
+        }
     }
 
     function cmdWhoami() {
         openOverlay('overlay-whoami');
+        const whoamiList = el('whoami-list');
+        if (!whoamiList) return;
         const birth = new Date(CONFIG.birthDate);
         const age   = ((Date.now() - birth) / (1000 * 60 * 60 * 24 * 365.2425)).toFixed(2);
-        document.getElementById('whoami-list').innerHTML = `
+        whoamiList.innerHTML = `
             <div class="info-row"><span class="info-key">name</span><span class="info-val">Shivansh Pratap Singh</span></div>
             <div class="info-row"><span class="info-key">age</span><span class="info-val">${age} years</span></div>
             <div class="info-row"><span class="info-key">status</span><span class="info-val">3rd year CS student</span></div>
@@ -592,7 +596,6 @@ function initEasterEggs() {
             <div class="info-row"><span class="info-key">vibe</span><span class="info-val">terminal aesthetic, lo-fi, film noir</span></div>`;
     }
 
-    // map action names to functions
     const HANDLERS = {
         rickroll: () => window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank'),
         love:     cmdLove,
@@ -616,9 +619,9 @@ function initEasterEggs() {
         sudo:     cmdSudo,
     };
 
-    // password modal logic
-    const pwModal = document.getElementById('pw-modal');
-    const pwInput = document.getElementById('pw-input');
+    const pwModal = el('pw-modal');
+    const pwInput = el('pw-input');
+    if (!pwModal || !pwInput) return;
 
     function tryPassword() {
         const word   = pwInput.value.trim().toLowerCase();
@@ -629,26 +632,29 @@ function initEasterEggs() {
             pwInput.value = '';
             fn();
         } else {
-            // wrong password — shake the input
             pwInput.classList.remove('wrong');
-            void pwInput.offsetWidth; // force reflow so animation replays
+            try { void pwInput.offsetWidth; } catch (_) {}
             pwInput.classList.add('wrong');
             pwInput.value = '';
             setTimeout(() => pwInput.classList.remove('wrong'), 400);
         }
     }
 
-    document.getElementById('pw-submit').addEventListener('click', tryPassword);
+    const pwSubmit = el('pw-submit');
+    const pwCancel = el('pw-cancel');
+    const cmdClose = el('commands-close');
+
+    if (pwSubmit) pwSubmit.addEventListener('click', tryPassword);
     pwInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryPassword(); });
-    document.getElementById('pw-cancel').addEventListener('click', () => {
+    if (pwCancel) pwCancel.addEventListener('click', () => {
         pwModal.classList.remove('open');
         pwInput.value = '';
     });
-    document.getElementById('commands-close').addEventListener('click', () => {
-        document.getElementById('commands-list').classList.remove('open');
+    if (cmdClose) cmdClose.addEventListener('click', () => {
+        const cmdList = el('commands-list');
+        if (cmdList) cmdList.classList.remove('open');
     });
 
-    // konami code — ↑↑↓↓←→←→BA
     const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
     let konamiIdx = 0;
     document.addEventListener('keydown', e => {
@@ -656,58 +662,55 @@ function initEasterEggs() {
         if (konamiIdx === KONAMI.length) { konamiIdx = 0; cmdKonami(); }
     });
 
-    // escape closes the easter egg overlay
-    const egg = document.getElementById('easter-egg');
-    document.getElementById('egg-close').addEventListener('click', () => {
-        egg.classList.remove('open');
-        document.body.style.overflow = '';
-    });
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && egg.classList.contains('open')) {
+    const egg     = el('easter-egg');
+    const eggClose = el('egg-close');
+    if (egg && eggClose) {
+        eggClose.addEventListener('click', () => {
             egg.classList.remove('open');
             document.body.style.overflow = '';
-        }
-    });
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && egg.classList.contains('open')) {
+                egg.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        });
+    }
 }
 
 
-// ─── footer heart + hidden title clicks ───────────────────────
+// ─── footer ───────────────────────────────────────────────────
 
 function initFooter() {
-    const heartBtn      = document.getElementById('heart-btn');
-    const spotifyReveal = document.getElementById('spotify-reveal');
+    const heartBtn      = el('heart-btn');
+    const spotifyReveal = el('spotify-reveal');
+    if (!heartBtn) return;
     let heartCount = 0;
 
     heartBtn.addEventListener('click', () => {
         heartCount++;
-
-        // bounce animation
         heartBtn.classList.remove('beat');
-        void heartBtn.offsetWidth;
+        try { void heartBtn.offsetWidth; } catch (_) {}
         heartBtn.classList.add('beat');
-
         spawnHearts(4, 1);
-
-        // spotify link appears on first click
-        if (heartCount === 1) spotifyReveal.style.display = 'flex';
-
-        // every 10 clicks → secret modal
+        if (heartCount === 1 && spotifyReveal) spotifyReveal.style.display = 'flex';
         if (heartCount % 10 === 0) {
             heartCount = 0;
             openPasswordModal();
         }
     });
 
-    // clicking the header title 10 times also opens the modal
     const hdrTitle = document.querySelector('.hdr-title');
-    let titleCount = 0;
-    hdrTitle.style.cursor = 'pointer';
-    hdrTitle.addEventListener('click', () => {
-        if (++titleCount >= 10) {
-            titleCount = 0;
-            openPasswordModal();
-        }
-    });
+    if (hdrTitle) {
+        let titleCount = 0;
+        hdrTitle.style.cursor = 'pointer';
+        hdrTitle.addEventListener('click', () => {
+            if (++titleCount >= 10) {
+                titleCount = 0;
+                openPasswordModal();
+            }
+        });
+    }
 }
 
 
@@ -722,7 +725,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initEasterEggs();
     initFooter();
 
-    // service worker — silently does nothing if the file isn't there
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () =>
             navigator.serviceWorker.register('service-worker.js').catch(() => {})

@@ -774,6 +774,29 @@ footer p { display: flex; align-items: center; gap: .4rem; }
 }
 #egg-close:hover { border-color: var(--accent); color: var(--accent); }
 
+/* visitor count + cv strip */
+.meta-strip {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: calc(var(--sp) * 2);
+    padding: .85rem 1rem;
+    border: 1px solid var(--muted);
+    font-size: .75rem; opacity: .75;
+    flex-wrap: wrap; gap: .5rem;
+}
+.cv-btn {
+    display: inline-flex; align-items: center; gap: .4rem;
+    color: var(--text); text-decoration: none;
+    border: 1px solid var(--muted); padding: .35rem .8rem;
+    font-size: .75rem; font-family: var(--font);
+    transition: border-color var(--ease), color var(--ease);
+}
+.cv-btn:hover { border-color: var(--accent); color: var(--accent); }
+.visitor-count {
+    display: inline-flex; align-items: center; gap: .4rem;
+    opacity: .55; font-size: .72rem;
+}
+.visitor-count i { color: var(--accent); }
+
 /* mobile breakpoints */
 @media (max-width: 640px) {
     nav { display: none; }

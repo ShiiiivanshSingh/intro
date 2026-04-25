@@ -83,7 +83,7 @@ body {
 
 .hdr-inner {
     display: flex; align-items: center; gap: 0;
-    padding: .6rem 0; min-width: 0;
+    padding: .55rem 0; min-width: 0;
 }
 .hdr-spacer { flex: 1; }
 
@@ -127,16 +127,16 @@ body {
 
 /* desktop nav */
 nav {
-    flex-shrink: 0; display: flex; flex-wrap: wrap;
-    align-items: center; gap: .5rem .85rem; font-size: .73rem;
+    flex-shrink: 0; display: flex; flex-wrap: nowrap;
+    align-items: center; gap: .5rem 1rem; font-size: .75rem;
 }
 nav a {
     color: var(--text); text-decoration: none; border: none;
-    white-space: nowrap; position: relative; opacity: .6;
+    white-space: nowrap; position: relative; opacity: .55;
     transition: color var(--ease), opacity var(--ease);
 }
 nav a::after {
-    content: ""; position: absolute; left: 0; bottom: -2px;
+    content: ""; position: absolute; left: 0; bottom: -3px;
     width: 0; height: 1px; background: var(--accent);
     transition: width var(--ease);
 }
@@ -144,6 +144,20 @@ nav a:hover { color: var(--accent); opacity: 1; }
 nav a:hover::after { width: 100%; }
 nav a.active { color: var(--accent); opacity: 1; }
 nav a.active::after { width: 100%; }
+
+/* cv pill in nav */
+nav a.nav-cv {
+    opacity: 1;
+    border: 1px solid var(--accent) !important;
+    color: var(--accent) !important;
+    padding: .2rem .55rem;
+    border-radius: 3px;
+    font-size: .7rem;
+    letter-spacing: .05em;
+    transition: background var(--ease), color var(--ease);
+}
+nav a.nav-cv::after { display: none; }
+nav a.nav-cv:hover { background: var(--accent); color: var(--bg) !important; }
 
 /* hamburger — only shows on mobile */
 #hamburger {
@@ -244,10 +258,12 @@ a:hover { border-color: var(--accent); }
 
 /* the "last watched / last listened" status lines */
 .status-line {
-    display: flex; align-items: center; gap: .4rem;
-    flex-wrap: wrap; font-size: .75rem; opacity: .55;
-    margin-top: calc(var(--sp)*.6);
+    display: flex; align-items: center; gap: .5rem;
+    font-size: .78rem; opacity: .55;
+    margin-top: calc(var(--sp)*.45);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
+.status-line > span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .status-line a { color: inherit; border-bottom: 1px solid var(--muted); font-size: inherit; }
 .status-line a:hover { color: var(--accent); border-color: var(--accent); }
 

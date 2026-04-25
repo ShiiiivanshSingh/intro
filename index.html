@@ -1,470 +1,589 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <!-- <meta charset="UTF-8"> -->
     <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shivansh's Works</title>
-    <meta name="description" content="Portfolio of Shivansh Pratap Singh — CS student building backend tools, open source projects, and artsy web experiments.">
+    <meta name="description"
+        content="Portfolio of Shivansh Pratap Singh — CS student building backend tools, open source projects, and artsy web experiments.">
     <meta property="og:title" content="Shivansh's Works - Portfolio">
     <meta property="og:description" content="Portfolio of Shivansh Pratap Singh - CS Student and Developer">
     <meta property="og:url" content="https://shiiiivanshsingh.github.io/intro/">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" type="image/svg+xml">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>"
+        type="image/svg+xml">
 </head>
+
 <body>
 
-<div id="scroll-bar"></div>
-<div id="cur-dot"></div>
-<div id="cur-ring"></div>
-<button id="bunny-btn">(\(\) click me</button>
+    <div id="scroll-bar"></div>
+    <div id="cur-dot"></div>
+    <div id="cur-ring"></div>
+    <button id="bunny-btn">(\(\) click me</button>
 
 
-<div id="easter-egg">
-    <div class="egg-inner">
-        <p class="egg-label">// you found it</p>
-        <div class="egg-ascii">  (\(\
-  ( -.-)
-  o_(")(")  </div>
-        <h2>hey, you're nosy. i like that.</h2>
-        <p>
-            most people never click "secret link".<br>
-            you did. that probably means you're curious, a little stubborn, and maybe slightly chaotic.<br><br>
-            same, honestly.
-        </p>
-        <p style="opacity:.45; font-size:.75rem;">
-            there's no prize here. just this message.<br>
-            and the quiet satisfaction of knowing you looked.
-        </p>
-        <div style="margin-top:1.2rem; border-top: 1px solid var(--muted); padding-top:1rem;">
-            <p style="font-size:.68rem; opacity:.35; text-transform:uppercase; letter-spacing:.12em; margin-bottom:.75rem;">// psst. one more thing.</p>
-            <p style="font-size:.75rem; opacity:.55; line-height:1.8;">
-                somewhere on this page, there's a little box that accepts words.<br>
-                it opens when you show it enough <em>love</em>. or enough <em>dedication</em>.<br><br>
-                once you're in, it listens.<br>
-                try saying something that sounds like a clue.<br><br>
-                it might ask you something back.<br>
-                trust your instincts. or don't. either works.
+    <div id="easter-egg">
+        <div class="egg-inner">
+            <p class="egg-label">// you found it</p>
+            <div class="egg-ascii"> (\(\
+                ( -.-)
+                o_(")(") </div>
+            <h2>hey, you're nosy. i like that.</h2>
+            <p>
+                most people never click "secret link".<br>
+                you did. that probably means you're curious, a little stubborn, and maybe slightly chaotic.<br><br>
+                same, honestly.
             </p>
-            <p style="font-size:.68rem; opacity:.25; margin-top:.75rem; line-height:1.7;">
-                (two ways in. one involves something you click when you feel something.<br>
-                the other? you've been staring at it this whole time.)
+            <p style="opacity:.45; font-size:.75rem;">
+                there's no prize here. just this message.<br>
+                and the quiet satisfaction of knowing you looked.
             </p>
-        </div>
-        <button id="egg-close">← go back</button>
-    </div>
-</div>
-
-<header class="hdr">
-    <div class="hdr-inner">
-        <span class="hdr-title">shivansh's works</span>
-        <span class="hdr-divider"></span>
-        <nav>
-            <a href="#about">about</a>
-            <a href="#featured">featured</a>
-            <a href="#web-utility">utility</a>
-            <a href="#web-artsy">artsy</a>
-            <a href="#apps">apps</a>
-            <a href="#extensions">extensions</a>
-            <a href="#connect">connect</a>
-        </nav>
-        <button id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-            <span></span><span></span><span></span>
-        </button>
-        <span class="theme-divider"></span>
-        <button id="theme-btn" aria-label="Toggle theme">
-            <span id="theme-icon"><i class="fas fa-moon"></i></span>
-        </button>
-    </div>
-    <nav id="mobile-nav" aria-hidden="true">
-        <div>
-            <a href="#about">about</a>
-            <a href="#featured">featured</a>
-            <a href="#web-utility">utility</a>
-            <a href="#web-artsy">artsy</a>
-            <a href="#apps">apps</a>
-            <a href="#extensions">extensions</a>
-            <a href="#connect">connect</a>
-        </div>
-    </nav>
-</header>
-
-<main>
-
-    <h1>hi, i am <a href="https://linktr.ee/ShivanshPratapSingh" target="_blank" rel="noopener noreferrer">Shivansh Pratap Singh</a></h1>
-
-    <section id="about">
-<p>a third-year Computer Science student.</p>
-<p>i mostly work on backend stuff, spend a lot of time sharpening my DSA skills, and contribute to open source whenever I can.</p>
-        
-    <p class="status-line">
-        <span class="sdot" style="background:#f37602"></span>
-        i'm currently <span id="age">calculating...</span> years old :)
-    </p>
-        <p class="status-line">
-            <span class="sdot"></span>
-            last watched :&nbsp;<span id="lb-title">—</span>
-        </p>
-        <p class="status-line">
-            <span class="sdot" style="background:#1DB954"></span>
-            <span id="lfm-label">last listened</span>: 
-            <span id="lfm-title">
-              <span class="lb-loading">
-                tuning in<span class="lb-dots"><span>.</span><span>.</span><span>.</span></span>
-              </span>
-            </span>
-            <span id="lfm-artist" style="opacity:.6"></span>        
-                </section>
-
-    <!-- featured — the 4 projects worth showing off first -->
-    <section id="featured" class="sec">
-        <h2>featured</h2>
-        <div class="featured-grid">
-
-            <div class="featured-card">
-                <p class="featured-badge">★ featured</p>
-                <p class="featured-tag"><i class="fas fa-chart-line" style="font-size:.6rem"></i>&nbsp;dashboard</p>
-                <h3><a href="https://leet-trackr-one.vercel.app" target="_blank" rel="noopener noreferrer">leet tracker</a></h3>
-                <p>track your leetcode progress, streaks, and stats in one clean dashboard.</p>
-                <div class="featured-links">
-                    <a href="https://leet-trackr-one.vercel.app" target="_blank" rel="noopener noreferrer">live ↗</a>
-                    <a href="https://github.com/ShiiiivanshSingh/LeetTrackr" class="gh-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-
-            <div class="featured-card">
-                <p class="featured-badge">★ featured</p>
-                <p class="featured-tag"><i class="fas fa-globe" style="font-size:.6rem"></i>&nbsp;game</p>
-                <h3>
-                    <a href="https://shiiiivanshsingh.github.io/Flag-Guess-/game.html" target="_blank" rel="noopener noreferrer">
-                        flag guess
-                    </a>
-                </h3>
-                <p>
-                    a simple geography guessing game where you guess countries based on their flags.
+            <div style="margin-top:1.2rem; border-top: 1px solid var(--muted); padding-top:1rem;">
+                <p
+                    style="font-size:.68rem; opacity:.35; text-transform:uppercase; letter-spacing:.12em; margin-bottom:.75rem;">
+                    // psst. one more thing.</p>
+                <p style="font-size:.75rem; opacity:.55; line-height:1.8;">
+                    somewhere on this page, there's a little box that accepts words.<br>
+                    it opens when you show it enough <em>love</em>. or enough <em>dedication</em>.<br><br>
+                    once you're in, it listens.<br>
+                    try saying something that sounds like a clue.<br><br>
+                    it might ask you something back.<br>
+                    trust your instincts. or don't. either works.
                 </p>
-                <div class="featured-links">
-                    <a href="https://shiiiivanshsingh.github.io/Flag-Guess-/game.html" target="_blank" rel="noopener noreferrer">live ↗</a>
-                    <a href="https://github.com/ShiiiivanshSingh/Flag-Guess-" class="gh-link" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-github"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="featured-card">
-                <p class="featured-badge">★ featured</p>
-                <p class="featured-tag"><i class="fas fa-cloud-rain" style="font-size:.6rem"></i>&nbsp;weather</p>
-            
-                <h3>
-                    <a href="https://shiiiivanshsingh.github.io/Overdrop/" target="_blank" rel="noopener noreferrer">
-                        overdrop
-                    </a>
-                </h3>
-            
-                <p>
-                    a simple weather tracker showing real-time conditions and forecasts at a glance.
+                <p style="font-size:.68rem; opacity:.25; margin-top:.75rem; line-height:1.7;">
+                    (two ways in. one involves something you click when you feel something.<br>
+                    the other? you've been staring at it this whole time.)
                 </p>
-            
-                <div class="featured-links">
-                    <a href="https://shiiiivanshsingh.github.io/Overdrop/" target="_blank" rel="noopener noreferrer">live ↗</a>
-                    <a href="https://github.com/ShiiiivanshSingh/Overdrop" class="gh-link" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-github"></i>
-                    </a>
-                </div>
             </div>
-
-            <div class="featured-card">
-                <p class="featured-badge">★ featured</p>
-                <p class="featured-tag"><i class="fas fa-palette" style="font-size:.6rem"></i>&nbsp;met museum</p>
-                <h3><a href="https://shiiiivanshsingh.github.io/art/" target="_blank" rel="noopener noreferrer">MET museum art</a></h3>
-                <p>fetches random artworks from the met museum api with popular and explorer modes.</p>
-                <div class="featured-links">
-                    <a href="https://shiiiivanshsingh.github.io/art/" target="_blank" rel="noopener noreferrer">live ↗</a>
-                    <a href="https://github.com/ShiiiivanshSingh/art" class="gh-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-
+            <button id="egg-close">← go back</button>
         </div>
-    </section>
-
-    <!-- utility tools -->
-    <section id="web-utility" class="sec">
-        <h2>web — utility &amp; tools</h2>
-        <ul class="cards">
-            <li><a href="https://leet-trackr-one.vercel.app" target="_blank" rel="noopener noreferrer">leet tracker</a><a href="https://github.com/ShiiiivanshSingh/LeetTrackr" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://shiiiivanshsingh.github.io/img2txt/" target="_blank" rel="noopener noreferrer">image to text</a><a href="https://github.com/ShiiiivanshSingh/img2txt" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://shiiiivanshsingh.github.io/Subix/" target="_blank" rel="noopener noreferrer">subix</a><a href="https://github.com/ShiiiivanshSingh/Subix" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://shiiiivanshsingh.github.io/CashCatcher/index.html" target="_blank" rel="noopener noreferrer">expense tracker</a><a href="https://github.com/ShiiiivanshSingh/CashCatcher" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://shiiiivanshsingh.github.io/TaskPop/" target="_blank" rel="noopener noreferrer">taskpop</a><a href="https://github.com/ShiiiivanshSingh/TaskPop" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://shiiiivanshsingh.github.io/GenQR/" target="_blank" rel="noopener noreferrer">gen qr</a><a href="https://github.com/ShiiiivanshSingh/GenQR" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://shiiiivanshsingh.github.io/Python-File-Sharing/WEB/fp.html" target="_blank" rel="noopener noreferrer">quick share</a><a href="https://github.com/ShiiiivanshSingh/Python-File-Sharing" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://pomodoro-app-ten-kappa.vercel.app" target="_blank" rel="noopener noreferrer">focus buddy</a><a href="https://github.com/ShiiiivanshSingh/Pomodoro-App" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://legalchamps.vercel.app/" target="_blank" rel="noopener noreferrer">legal champs.</a><a href="https://github.com/ShiiiivanshSingh/TECHNOVATION-HACKATHON-2025-Entry" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://github.com/ShiiiivanshSingh/ClearVision/tree/main/DEMO#demo-img" target="_blank" rel="noopener noreferrer">clearvision</a><a href="https://github.com/ShiiiivanshSingh/ClearVision" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
-        </ul>
-    </section>
-
-    <!-- the fun / artsy stuff -->
-    <section id="web-artsy" class="sec">
-        <h2>web — fun &amp; artsy</h2>
-        <ul class="cards">
-            <li><a href="https://shiiiivanshsingh.github.io/Flag-Guess-/game.html" target="_blank" rel="noopener noreferrer">flag guess</a><a href="https://github.com/ShiiiivanshSingh/Flag-Guess-" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://shiiiivanshsingh.github.io/Overdrop/" target="_blank" rel="noopener noreferrer">overdrop</a><a href="https://github.com/ShiiiivanshSingh/Overdrop" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://shiiiivanshsingh.github.io/art/" target="_blank" rel="noopener noreferrer">MET museum art</a><a href="https://github.com/ShiiiivanshSingh/art" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://shiiiivanshsingh.github.io/nasa-img/" target="_blank" rel="noopener noreferrer">nasa image explorer</a><a href="https://github.com/ShiiiivanshSingh/nasa-img" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://shiiiivanshsingh.github.io/dvd/main.html" target="_blank" rel="noopener noreferrer">dvd logo visuals</a><a href="https://github.com/ShiiiivanshSingh/dvd" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://shiiiivanshsingh.github.io/magnolia-weather/" target="_blank" rel="noopener noreferrer">magnolia weather</a><a href="https://github.com/ShiiiivanshSingh/magnolia-weather" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
-            <!-- <li><a href="https://chrono-craft-mu.vercel.app" target="_blank" rel="noopener noreferrer">chrono craft</a><a href="https://github.com/ShiiiivanshSingh/ChronoCraft" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li> -->
-            <li><a href="https://shiiiivanshsingh.github.io/EZVeto/" target="_blank" rel="noopener noreferrer">counter strike map veto sim</a><a href="https://github.com/ShiiiivanshSingh/EZVeto" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://callouts-gg.netlify.app/" target="_blank" rel="noopener noreferrer">counter strike callout generator (wip)</a><a href="https://github.com/ShiiiivanshSingh/Counter-Strike-Map-Callout-Guide" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
-            <!-- <li><a href="https://shiiiivanshsingh.github.io/SMify/Hausla%20-%20Seedhe%20Maut/" target="_blank" rel="noopener noreferrer">smify</a><a href="https://github.com/ShiiiivanshSingh/SMify" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li> -->
-        </ul>
-    </section>
-
-    <!-- mobile apps -->
-    <section id="apps" class="sec">
-        <h2>mobile apps i've worked on</h2>
-        <ul class="cards">
-            <li><a href="https://github.com/ShiiiivanshSingh/NoteWave/releases/tag/release" target="_blank" rel="noopener noreferrer">notewave</a><a href="https://github.com/ShiiiivanshSingh/NoteWave" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://github.com/ShiiiivanshSingh/Quick-Weather/releases/tag/main" target="_blank" rel="noopener noreferrer">quick weather</a><a href="https://github.com/ShiiiivanshSingh/Quick-Weather" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://github.com/ShiiiivanshSingh/HackOClock" target="_blank" rel="noopener noreferrer">easy fit</a><a href="https://github.com/ShiiiivanshSingh/HackOClock" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
-        </ul>
-    </section>
-
-    <!-- browser extensions -->
-    <section id="extensions" class="sec">
-        <h2>browser extensions i've made</h2>
-        <ul class="cards">
-            <li><a href="https://github.com/ShiiiivanshSingh/fcb-score-tracker/releases/tag/build2" target="_blank" rel="noopener noreferrer">fcb score tracker</a><a href="https://github.com/ShiiiivanshSingh/fcb-score-tracker" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://github.com/ShiiiivanshSingh/BrainRotTV/reeases/tag/build2" target="_blank" rel="noopener noreferrer">dr. brainrot</a><a href="https://github.com/ShiiiivanshSingh/BrainRotTV" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
-        </ul>
-    </section>
-
-    <!-- github activity graph -->
-    <section id="github" class="sec">
-        <h2>github activity</h2>
-        <div class="graph-wrap">
-            <a href="https://github.com/ShiiiivanshSingh" target="_blank" rel="noopener noreferrer">
-                <img
-                    id="gh-graph"
-                    src="https://ghchart.rshah.org/D6536D/ShiiiivanshSingh"
-                    alt="Contribution graph for ShiiiivanshSingh on GitHub"
-                    loading="lazy"
-                    onerror="this.style.display='none'; document.getElementById('gh-fallback').style.display='block';"
-                >
-            </a>
-            <div id="gh-fallback">
-                <p style="margin-bottom:.5rem; font-size:.8rem;">contribution graph unavailable right now.</p>
-                <a href="https://github.com/ShiiiivanshSingh" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-github"></i> view github profile directly ↗
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- music + films shelves -->
-    <section id="shelves" class="sec">
-        <div class="shelf-grid">
-            <div class="shelf">
-                <p class="shelf-label">recently listened</p>
-                <ul class="shelf-list" id="lfm-shelf"><li style="opacity:.35;padding:.35rem 0 .35rem var(--sp)">loading...</li></ul>
-            </div>
-            <div class="shelf">
-                <p class="shelf-label">top films</p>
-                <ul class="shelf-list" id="lb-shelf"><li style="opacity:.35;padding:.35rem 0 .35rem var(--sp)">loading...</li></ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- connect section -->
-    <section id="connect" class="sec">
-        <h2>connect</h2>
-        <div class="connect-grid">
-
-            <div>
-                <p class="clabel">socials</p>
-                <ul class="social-row">
-                    <li><a href="https://github.com/ShiiiivanshSingh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i><span>github</span></a></li>
-                    <li><a href="https://www.linkedin.com/in/shivansh-pratap-singh-23b3b92b1" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i><span>linkedin</span></a></li>
-                    <li><a href="https://x.com/de_mirage_fan" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i><span>twitter / x</span></a></li>
-                    <li><a href="https://www.instagram.com/shivansh___siingh" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i><span>instagram</span></a></li>
-                    <li><a href="https://www.youtube.com/@shivanshpratapsingh" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i><span>youtube</span></a></li>
-                    <li><a href="https://letterboxd.com/ShivanshSingh" target="_blank" rel="noopener noreferrer"><i class="fas fa-film"></i><span>letterboxd</span></a></li>
-                </ul>
-                <a href="mailto:shivanshpratapsingh0807@gmail.com" class="email-link">
-                    <i class="fas fa-envelope"></i><span>email me</span>
-                </a>
-            </div>
-
-            <div>
-                <p class="clabel">coding profiles</p>
-                <ul class="link-list">
-                    <li><a href="https://codolio.com/profile/sh1vansh" target="_blank" rel="noopener noreferrer"><i class="fas fa-chart-bar"></i>dsa stats</a></li>
-                    <li><a href="https://leetcode.com/u/ShivanshPratapSingh/" target="_blank" rel="noopener noreferrer"><i class="fas fa-code"></i>leetcode</a></li>
-                    <li><a href="https://codeforces.com/profile/sha-vinshi" target="_blank" rel="noopener noreferrer"><i class="fas fa-code"></i>codeforces</a></li>
-                    <li><a href="https://www.geeksforgeeks.org/user/shivanshpratt8cf" target="_blank" rel="noopener noreferrer"><i class="fas fa-leaf"></i>geeksforgeeks</a></li>
-                    <li><a href="https://devfolio.co/@ShivanshOF" target="_blank" rel="noopener noreferrer"><i class="fas fa-laptop-code"></i>devfolio</a></li>
-                    <li><a href="https://letsupgrade.in/user/sh1vanshgg" target="_blank" rel="noopener noreferrer"><i class="fas fa-arrow-up"></i>letsupgrade</a></li>
-                    <li><a href="https://linktr.ee/ShivanshPratapSingh" target="_blank" rel="noopener noreferrer"><i class="fas fa-tree"></i>linktree</a></li>
-                </ul>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- visitor count + cv -->
-    <div class="meta-strip">
-        <a href="https://drive.google.com/file/d/1UcP-fjhUGukAh1ytxd-TiJlD5j7Bo_ds/view?usp=sharing" class="cv-btn" id="cv-link" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-file-alt"></i> download cv
-        </a>
-        <span class="visitor-count">
-            <i class="fas fa-eye"></i> <span id="visitor-count">—</span> visitors
-        </span>
     </div>
 
-    <footer>
-        <p>made with
-            <button id="heart-btn" aria-label="Send love">
-                <i class="fa-solid fa-heart" id="heart-icon"></i>
+    <header class="hdr">
+        <div class="hdr-inner">
+            <span class="hdr-title">shivansh's works</span>
+            <span class="hdr-divider"></span>
+            <nav>
+                <a href="#about">about</a>
+                <a href="#featured">featured</a>
+                <a href="#web-utility">utility</a>
+                <a href="#web-artsy">artsy</a>
+                <a href="#apps">apps</a>
+                <a href="#extensions">extensions</a>
+                <a href="#connect">connect</a>
+                <a href="https://drive.google.com/file/d/1UcP-fjhUGukAh1ytxd-TiJlD5j7Bo_ds/view?usp=sharing" class="nav-cv" target="_blank" rel="noopener noreferrer">cv ↗</a>
+            </nav>
+            <button id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
             </button>
-            by shivansh
-        </p>
-        <a href="https://open.spotify.com/user/a8al1zw8j5yx7z9t5izqd2ctf?si=9a220c306c4b433e"
-           id="spotify-reveal"
-           target="_blank" rel="noopener noreferrer"
-           style="display:none;">
-            <i class="fab fa-spotify"></i> find me on spotify ↗
-        </a>
-    </footer>
-
-    <!-- songs overlay -->
-    <div class="info-overlay" id="overlay-songs">
-        <div class="info-box">
-            <h3>// last 10 tracks</h3>
-            <div id="songs-list"><div class="info-row"><span class="info-key">loading...</span></div></div>
-            <button class="info-close" onclick="document.getElementById('overlay-songs').classList.remove('open')">← close</button>
+            <span class="theme-divider"></span>
+            <button id="theme-btn" aria-label="Toggle theme">
+                <span id="theme-icon"><i class="fas fa-moon"></i></span>
+            </button>
         </div>
-    </div>
-
-    <!-- stats overlay -->
-    <div class="info-overlay" id="overlay-stats">
-        <div class="info-box">
-            <h3>// last.fm stats</h3>
-            <div id="stats-list"><div class="info-row"><span class="info-key">loading...</span></div></div>
-            <button class="info-close" onclick="document.getElementById('overlay-stats').classList.remove('open')">← close</button>
-        </div>
-    </div>
-
-    <!-- films overlay -->
-    <div class="info-overlay" id="overlay-films">
-        <div class="info-box">
-            <h3>// top films</h3>
-            <div id="films-list"></div>
-            <button class="info-close" onclick="document.getElementById('overlay-films').classList.remove('open')">← close</button>
-        </div>
-    </div>
-
-    <!-- whoami overlay -->
-    <div class="info-overlay" id="overlay-whoami">
-        <div class="info-box">
-            <h3>// dossier</h3>
-            <div id="whoami-list"></div>
-            <button class="info-close" onclick="document.getElementById('overlay-whoami').classList.remove('open')">← close</button>
-        </div>
-    </div>
-
-    <!-- 404 joke -->
-    <div id="overlay-404">
-        <div class="err-code">404</div>
-        <div class="err-msg">page not found.<br><span style="opacity:.4;font-size:.7rem">just kidding.</span></div>
-    </div>
-
-    <!-- sleep -->
-    <div id="sleep-overlay">😴</div>
-
-    <!-- hint confirm dialog -->
-    <div id="hint-confirm">
-        <div id="hint-confirm-box">
-            <p>are you sure you want to<br>view all commands?</p>
-            <div class="hint-confirm-btns">
-                <button id="hint-yes">yes</button>
-                <button id="hint-no">no</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- full command list -->
-    <div id="commands-list">
-        <div id="commands-box">
-            <h3>// all commands</h3>
-            <div class="cmd-row"><span class="cmd-key">chungus</span><span class="cmd-desc">never gonna give you up</span></div>
-            <div class="cmd-row"><span class="cmd-key">shivansh</span><span class="cmd-desc">something sweet</span></div>
-            <div class="cmd-row"><span class="cmd-key">cutie</span><span class="cmd-desc">a little surprise</span></div>
-            <div class="cmd-row"><span class="cmd-key">dl91</span><span class="cmd-desc">open a playlist</span></div>
-            <div class="cmd-row"><span class="cmd-key">matrix</span><span class="cmd-desc">there is no spoon</span></div>
-            <div class="cmd-row"><span class="cmd-key">nostalgia</span><span class="cmd-desc">lo-fi to study/relax to</span></div>
-            <div class="cmd-row"><span class="cmd-key">konami</span><span class="cmd-desc">↑↑↓↓←→←→</span></div>
-            <div class="cmd-row"><span class="cmd-key">debug</span><span class="cmd-desc">run diagnostics</span></div>
-            <div class="cmd-row"><span class="cmd-key">void</span><span class="cmd-desc">stare into the abyss</span></div>
-            <div class="cmd-row"><span class="cmd-key">hint</span><span class="cmd-desc">you already know</span></div>
-            <div class="cmd-row"><span class="cmd-key">songs</span><span class="cmd-desc">last 10 scrobbles</span></div>
-            <div class="cmd-row"><span class="cmd-key">stats</span><span class="cmd-desc">last.fm listening stats</span></div>
-            <div class="cmd-row"><span class="cmd-key">films</span><span class="cmd-desc">top 6 films</span></div>
-            <div class="cmd-row"><span class="cmd-key">whoami</span><span class="cmd-desc">classified dossier</span></div>
-            <div class="cmd-row"><span class="cmd-key">404</span><span class="cmd-desc">uh oh</span></div>
-            <div class="cmd-row"><span class="cmd-key">sleep</span><span class="cmd-desc">zzzz</span></div>
-            <div class="cmd-row"><span class="cmd-key">glitch</span><span class="cmd-desc">reality.exe has stopped</span></div>
-            <div class="cmd-row"><span class="cmd-key">invert</span><span class="cmd-desc">mirror world (3s)</span></div>
-            <div class="cmd-row"><span class="cmd-key">rage</span><span class="cmd-desc">AAAAAA</span></div>
-            <div class="cmd-row"><span class="cmd-key">sudo</span><span class="cmd-desc">nice try</span></div>
-            <button id="commands-close">← close</button>
-        </div>
-    </div>
-
-    <!-- fake terminal -->
-    <div id="debug-terminal">
-        <div id="debug-output"></div>
-        <button class="debug-exit" id="debug-exit">[ exit ]</button>
-    </div>
-
-    <!-- void — just a blinking cursor in the dark -->
-    <div id="void-overlay">
-        <div id="void-cursor"></div>
-    </div>
-
-    <!-- love popup -->
-    <div id="love-popup">
-        <span class="love-msg">i love you ♥</span>
-    </div>
-
-    <!-- matrix rain -->
-    <div id="matrix-overlay">
-        <canvas id="matrix-canvas"></canvas>
-        <p class="matrix-exit">click anywhere to exit</p>
-    </div>
-
-    <!-- password modal -->
-    <div id="pw-modal">
-        <div id="pw-box">
-            <p>🔒 you found something.<br>enter the password.</p>
-            <input id="pw-input" type="password" placeholder="••••••••" autocomplete="off" />
+        <nav id="mobile-nav" aria-hidden="true">
             <div>
-                <button id="pw-submit">enter</button>
-                <button id="pw-cancel">cancel</button>
+                <a href="#about">about</a>
+                <a href="#featured">featured</a>
+                <a href="#web-utility">utility</a>
+                <a href="#web-artsy">artsy</a>
+                <a href="#apps">apps</a>
+                <a href="#extensions">extensions</a>
+                <a href="#connect">connect</a>
+                <a href="https://drive.google.com/file/d/1UcP-fjhUGukAh1ytxd-TiJlD5j7Bo_ds/view?usp=sharing" target="_blank" rel="noopener noreferrer">cv ↗</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <h1>hi, i am <a href="https://linktr.ee/ShivanshPratapSingh" target="_blank" rel="noopener noreferrer">Shivansh
+                Pratap Singh</a></h1>
+
+        <section id="about">
+            <p>a fourth-year Computer Science student.</p>
+            <p>i mostly work on backend stuff, spend a lot of time sharpening my DSA skills, and contribute to open
+                source whenever I can.</p>
+
+            <p class="status-line">
+                <span class="sdot" style="background:#f37602"></span>
+                <span>i'm currently <span id="age">calculating...</span> years old :)</span>
+            </p>
+            <p class="status-line">
+                <span class="sdot"></span>
+                <span>last watched: <span id="lb-title">—</span></span>
+            </p>
+            <p class="status-line">
+                <span class="sdot" style="background:#1DB954"></span>
+                <span><span id="lfm-label">last listened</span>: <span id="lfm-title"><span class="lb-loading">tuning in<span class="lb-dots"><span>.</span><span>.</span><span>.</span></span></span></span> <span id="lfm-artist" style="opacity:.6"></span></span>
+            </p>
+        </section>
+
+        <!-- featured — the 4 projects worth showing off first -->
+        <section id="featured" class="sec">
+            <h2>featured</h2>
+            <div class="featured-grid">
+
+                <div class="featured-card">
+                    <p class="featured-badge">★ featured</p>
+                    <p class="featured-tag"><i class="fas fa-check-circle" style="font-size:.6rem"></i>&nbsp;extension
+                    </p>
+                    <h3><a href="https://github.com/ShiiiivanshSingh/have-u-solved-today/releases/tag/release"
+                            target="_blank" rel="noopener noreferrer">have u solved today?</a></h3>
+                    <p>have you solved your daily leetcode & codeforces today? </p>
+                    <div class="featured-links">
+                        <a href="https://github.com/ShiiiivanshSingh/have-u-solved-today/releases/tag/release"
+                            target="_blank" rel="noopener noreferrer">download ↗</a>
+                        <a href="https://github.com/ShiiiivanshSingh/have-u-solved-today" class="gh-link"
+                            target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="featured-card">
+                    <p class="featured-badge">★ featured</p>
+                    <p class="featured-tag"><i class="fas fa-chart-line" style="font-size:.6rem"></i>&nbsp;dashboard</p>
+                    <h3><a href="https://leet-trackr-one.vercel.app" target="_blank" rel="noopener noreferrer">leet
+                            tracker</a></h3>
+                    <p>track your leetcode progress, streaks, and stats in one clean dashboard.</p>
+                    <div class="featured-links">
+                        <a href="https://leet-trackr-one.vercel.app" target="_blank" rel="noopener noreferrer">live
+                            ↗</a>
+                        <a href="https://github.com/ShiiiivanshSingh/LeetTrackr" class="gh-link" target="_blank"
+                            rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="featured-card">
+                    <p class="featured-badge">★ featured</p>
+                    <p class="featured-tag"><i class="fas fa-film" style="font-size:.6rem"></i>&nbsp;utility</p>
+                    <h3><a href="https://shiiiivanshsingh.github.io/Subix/" target="_blank"
+                            rel="noopener noreferrer">subix</a></h3>
+                    <p>get movies, posters, backdrops, subtitles in a minute.</p>
+                    <div class="featured-links">
+                        <a href="https://shiiiivanshsingh.github.io/Subix/" target="_blank"
+                            rel="noopener noreferrer">live ↗</a>
+                        <a href="https://github.com/ShiiiivanshSingh/Subix" class="gh-link" target="_blank"
+                            rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="featured-card">
+                    <p class="featured-badge">★ featured</p>
+                    <p class="featured-tag"><i class="fas fa-globe" style="font-size:.6rem"></i>&nbsp;game</p>
+                    <h3><a href="https://shiiiivanshsingh.github.io/Flag-Guess-/game.html" target="_blank"
+                            rel="noopener noreferrer">flag guess</a></h3>
+                    <p>a simple geography guessing game where you guess countries based on their flags.</p>
+                    <div class="featured-links">
+                        <a href="https://shiiiivanshsingh.github.io/Flag-Guess-/game.html" target="_blank"
+                            rel="noopener noreferrer">live ↗</a>
+                        <a href="https://github.com/ShiiiivanshSingh/Flag-Guess-" class="gh-link" target="_blank"
+                            rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <!-- <div class="featured-card">
+                    <p class="featured-badge">★ featured</p>
+                    <p class="featured-tag"><i class="fas fa-cloud-rain" style="font-size:.6rem"></i>&nbsp;weather</p>
+                    <h3><a href="https://shiiiivanshsingh.github.io/Overdrop/" target="_blank" rel="noopener noreferrer">overdrop</a></h3>
+                    <p>a simple weather tracker showing real-time conditions and forecasts at a glance.</p>
+                    <div class="featured-links">
+                        <a href="https://shiiiivanshsingh.github.io/Overdrop/" target="_blank" rel="noopener noreferrer">live ↗</a>
+                        <a href="https://github.com/ShiiiivanshSingh/Overdrop" class="gh-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="featured-card">
+                    <p class="featured-badge">★ featured</p>
+                    <p class="featured-tag"><i class="fas fa-palette" style="font-size:.6rem"></i>&nbsp;met museum</p>
+                    <h3><a href="https://shiiiivanshsingh.github.io/art/" target="_blank" rel="noopener noreferrer">MET museum art</a></h3>
+                    <p>fetches random artworks from the met museum api with popular and explorer modes.</p>
+                    <div class="featured-links">
+                        <a href="https://shiiiivanshsingh.github.io/art/" target="_blank" rel="noopener noreferrer">live ↗</a>
+                        <a href="https://github.com/ShiiiivanshSingh/art" class="gh-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                    </div>
+                </div> -->
+
+            </div>
+        </section>
+
+        <!-- utility tools -->
+        <section id="web-utility" class="sec">
+            <h2>web — utility &amp; tools</h2>
+            <ul class="cards">
+                <li><a href="https://leet-trackr-one.vercel.app" target="_blank" rel="noopener noreferrer">leet
+                        tracker</a><a href="https://github.com/ShiiiivanshSingh/LeetTrackr" class="gh" target="_blank"
+                        rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://shiiiivanshsingh.github.io/img2txt/" target="_blank"
+                        rel="noopener noreferrer">image to text</a><a href="https://github.com/ShiiiivanshSingh/img2txt"
+                        class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://shiiiivanshsingh.github.io/Subix/" target="_blank"
+                        rel="noopener noreferrer">subix</a><a href="https://github.com/ShiiiivanshSingh/Subix"
+                        class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://shiiiivanshsingh.github.io/CashCatcher/index.html" target="_blank"
+                        rel="noopener noreferrer">expense tracker</a><a
+                        href="https://github.com/ShiiiivanshSingh/CashCatcher" class="gh" target="_blank"
+                        rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://shiiiivanshsingh.github.io/TaskPop/" target="_blank"
+                        rel="noopener noreferrer">taskpop</a><a href="https://github.com/ShiiiivanshSingh/TaskPop"
+                        class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://shiiiivanshsingh.github.io/GenQR/" target="_blank" rel="noopener noreferrer">gen
+                        qr</a><a href="https://github.com/ShiiiivanshSingh/GenQR" class="gh" target="_blank"
+                        rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://shiiiivanshsingh.github.io/Python-File-Sharing/WEB/fp.html" target="_blank"
+                        rel="noopener noreferrer">quick share</a><a
+                        href="https://github.com/ShiiiivanshSingh/Python-File-Sharing" class="gh" target="_blank"
+                        rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://pomodoro-app-ten-kappa.vercel.app" target="_blank" rel="noopener noreferrer">focus
+                        buddy</a><a href="https://github.com/ShiiiivanshSingh/Pomodoro-App" class="gh" target="_blank"
+                        rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://legalchamps.vercel.app/" target="_blank" rel="noopener noreferrer">legal
+                        champs.</a><a href="https://github.com/ShiiiivanshSingh/TECHNOVATION-HACKATHON-2025-Entry"
+                        class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://github.com/ShiiiivanshSingh/ClearVision/tree/main/DEMO#demo-img" target="_blank"
+                        rel="noopener noreferrer">clearvision</a><a
+                        href="https://github.com/ShiiiivanshSingh/ClearVision" class="gh" target="_blank"
+                        rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+            </ul>
+        </section>
+
+        <!-- the fun / artsy stuff -->
+        <section id="web-artsy" class="sec">
+            <h2>web — fun &amp; artsy</h2>
+            <ul class="cards">
+                <li><a href="https://shiiiivanshsingh.github.io/Flag-Guess-/game.html" target="_blank"
+                        rel="noopener noreferrer">flag guess</a><a
+                        href="https://github.com/ShiiiivanshSingh/Flag-Guess-" class="gh" target="_blank"
+                        rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://shiiiivanshsingh.github.io/Overdrop/" target="_blank"
+                        rel="noopener noreferrer">overdrop</a><a href="https://github.com/ShiiiivanshSingh/Overdrop"
+                        class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://shiiiivanshsingh.github.io/art/" target="_blank" rel="noopener noreferrer">MET
+                        museum art</a><a href="https://github.com/ShiiiivanshSingh/art" class="gh" target="_blank"
+                        rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://shiiiivanshsingh.github.io/nasa-img/" target="_blank"
+                        rel="noopener noreferrer">nasa image explorer</a><a
+                        href="https://github.com/ShiiiivanshSingh/nasa-img" class="gh" target="_blank"
+                        rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://shiiiivanshsingh.github.io/dvd/main.html" target="_blank"
+                        rel="noopener noreferrer">dvd logo visuals</a><a href="https://github.com/ShiiiivanshSingh/dvd"
+                        class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://shiiiivanshsingh.github.io/magnolia-weather/" target="_blank"
+                        rel="noopener noreferrer">magnolia weather</a><a
+                        href="https://github.com/ShiiiivanshSingh/magnolia-weather" class="gh" target="_blank"
+                        rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+                <!-- <li><a href="https://chrono-craft-mu.vercel.app" target="_blank" rel="noopener noreferrer">chrono craft</a><a href="https://github.com/ShiiiivanshSingh/ChronoCraft" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li> -->
+                <li><a href="https://shiiiivanshsingh.github.io/EZVeto/" target="_blank"
+                        rel="noopener noreferrer">counter strike map veto sim</a><a
+                        href="https://github.com/ShiiiivanshSingh/EZVeto" class="gh" target="_blank"
+                        rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://callouts-gg.netlify.app/" target="_blank" rel="noopener noreferrer">counter strike
+                        callout generator (wip)</a><a
+                        href="https://github.com/ShiiiivanshSingh/Counter-Strike-Map-Callout-Guide" class="gh"
+                        target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+                <!-- <li><a href="https://shiiiivanshsingh.github.io/SMify/Hausla%20-%20Seedhe%20Maut/" target="_blank" rel="noopener noreferrer">smify</a><a href="https://github.com/ShiiiivanshSingh/SMify" class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li> -->
+            </ul>
+        </section>
+
+        <!-- mobile apps -->
+        <section id="apps" class="sec">
+            <h2>mobile apps i've worked on</h2>
+            <ul class="cards">
+                <li><a href="https://github.com/ShiiiivanshSingh/NoteWave/releases/tag/release" target="_blank"
+                        rel="noopener noreferrer">notewave</a><a href="https://github.com/ShiiiivanshSingh/NoteWave"
+                        class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://github.com/ShiiiivanshSingh/Quick-Weather/releases/tag/main" target="_blank"
+                        rel="noopener noreferrer">quick weather</a><a
+                        href="https://github.com/ShiiiivanshSingh/Quick-Weather" class="gh" target="_blank"
+                        rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://github.com/ShiiiivanshSingh/HackOClock" target="_blank"
+                        rel="noopener noreferrer">easy fit</a><a href="https://github.com/ShiiiivanshSingh/HackOClock"
+                        class="gh" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+            </ul>
+        </section>
+
+        <!-- browser extensions -->
+        <section id="extensions" class="sec">
+            <h2>browser extensions i've made</h2>
+            <ul class="cards">
+                <li><a href="https://github.com/ShiiiivanshSingh/fcb-score-tracker/releases/tag/final" target="_blank"
+                        rel="noopener noreferrer">fcb score tracker</a><a
+                        href="https://github.com/ShiiiivanshSingh/fcb-score-tracker" class="gh" target="_blank"
+                        rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://github.com/ShiiiivanshSingh/BrainRotTV/reeases/tag/build2" target="_blank"
+                        rel="noopener noreferrer">dr. brainrot</a><a
+                        href="https://github.com/ShiiiivanshSingh/BrainRotTV" class="gh" target="_blank"
+                        rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://github.com/ShiiiivanshSingh/have-u-solved-today/releases/tag/release"
+                        target="_blank" rel="noopener noreferrer">have u solved today?</a><a
+                        href="https://github.com/ShiiiivanshSingh/have-u-solved-today" class="gh" target="_blank"
+                        rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+            </ul>
+        </section>
+
+        <!-- github activity graph -->
+        <section id="github" class="sec">
+            <h2>github activity</h2>
+            <div class="graph-wrap">
+                <a href="https://github.com/ShiiiivanshSingh" target="_blank" rel="noopener noreferrer">
+                    <img id="gh-graph" src="https://ghchart.rshah.org/D6536D/ShiiiivanshSingh"
+                        alt="Contribution graph for ShiiiivanshSingh on GitHub" loading="lazy"
+                        onerror="this.style.display='none'; document.getElementById('gh-fallback').style.display='block';">
+                </a>
+                <div id="gh-fallback">
+                    <p style="margin-bottom:.5rem; font-size:.8rem;">contribution graph unavailable right now.</p>
+                    <a href="https://github.com/ShiiiivanshSingh" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i> view github profile directly ↗
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- music + films shelves -->
+        <section id="shelves" class="sec">
+            <div class="shelf-grid">
+                <div class="shelf">
+                    <p class="shelf-label">recently listened</p>
+                    <ul class="shelf-list" id="lfm-shelf">
+                        <li style="opacity:.35;padding:.35rem 0 .35rem var(--sp)">loading...</li>
+                    </ul>
+                </div>
+                <div class="shelf">
+                    <p class="shelf-label">top films</p>
+                    <ul class="shelf-list" id="lb-shelf">
+                        <li style="opacity:.35;padding:.35rem 0 .35rem var(--sp)">loading...</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- connect section -->
+        <section id="connect" class="sec">
+            <h2>connect</h2>
+            <div class="connect-grid">
+
+                <div>
+                    <p class="clabel">socials</p>
+                    <ul class="social-row">
+                        <li><a href="https://github.com/ShiiiivanshSingh" target="_blank" rel="noopener noreferrer"><i
+                                    class="fab fa-github"></i><span>github</span></a></li>
+                        <li><a href="https://www.linkedin.com/in/shivansh-pratap-singh-23b3b92b1" target="_blank"
+                                rel="noopener noreferrer"><i class="fab fa-linkedin"></i><span>linkedin</span></a></li>
+                        <li><a href="https://x.com/de_mirage_fan" target="_blank" rel="noopener noreferrer"><i
+                                    class="fab fa-twitter"></i><span>twitter / x</span></a></li>
+                        <li><a href="https://www.instagram.com/shivansh___siingh" target="_blank"
+                                rel="noopener noreferrer"><i class="fab fa-instagram"></i><span>instagram</span></a>
+                        </li>
+                        <li><a href="https://www.youtube.com/@shivanshpratapsingh" target="_blank"
+                                rel="noopener noreferrer"><i class="fab fa-youtube"></i><span>youtube</span></a></li>
+                        <li><a href="https://letterboxd.com/ShivanshSingh" target="_blank" rel="noopener noreferrer"><i
+                                    class="fas fa-film"></i><span>letterboxd</span></a></li>
+                    </ul>
+                    <a href="mailto:shivanshpratapsingh0807@gmail.com" class="email-link">
+                        <i class="fas fa-envelope"></i><span>email me</span>
+                    </a>
+                </div>
+
+                <div>
+                    <p class="clabel">coding profiles</p>
+                    <ul class="link-list">
+                        <li><a href="https://codolio.com/profile/sh1vansh" target="_blank" rel="noopener noreferrer"><i
+                                    class="fas fa-chart-bar"></i>dsa stats</a></li>
+                        <li><a href="https://leetcode.com/u/ShivanshPratapSingh/" target="_blank"
+                                rel="noopener noreferrer"><i class="fas fa-code"></i>leetcode</a></li>
+                        <li><a href="https://codeforces.com/profile/sha-vinshi" target="_blank"
+                                rel="noopener noreferrer"><i class="fas fa-code"></i>codeforces</a></li>
+                        <li><a href="https://www.geeksforgeeks.org/user/shivanshpratt8cf" target="_blank"
+                                rel="noopener noreferrer"><i class="fas fa-leaf"></i>geeksforgeeks</a></li>
+                        <li><a href="https://devfolio.co/@ShivanshOF" target="_blank" rel="noopener noreferrer"><i
+                                    class="fas fa-laptop-code"></i>devfolio</a></li>
+                        <li><a href="https://letsupgrade.in/user/sh1vanshgg" target="_blank"
+                                rel="noopener noreferrer"><i class="fas fa-arrow-up"></i>letsupgrade</a></li>
+                        <li><a href="https://linktr.ee/ShivanshPratapSingh" target="_blank" rel="noopener noreferrer"><i
+                                    class="fas fa-tree"></i>linktree</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- visitor count + cv -->
+        <div class="meta-strip">
+            <a href="https://drive.google.com/file/d/1UcP-fjhUGukAh1ytxd-TiJlD5j7Bo_ds/view?usp=sharing" class="cv-btn"
+                id="cv-link" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-file-alt"></i> download cv
+            </a>
+            <span class="visitor-count">
+                <i class="fas fa-eye"></i> <span id="visitor-count">—</span> visitors
+            </span>
+        </div>
+
+        <footer>
+            <p>made with
+                <button id="heart-btn" aria-label="Send love">
+                    <i class="fa-solid fa-heart" id="heart-icon"></i>
+                </button>
+                by shivansh
+            </p>
+            <a href="https://open.spotify.com/user/a8al1zw8j5yx7z9t5izqd2ctf?si=9a220c306c4b433e" id="spotify-reveal"
+                target="_blank" rel="noopener noreferrer" style="display:none;">
+                <i class="fab fa-spotify"></i> find me on spotify ↗
+            </a>
+        </footer>
+
+        <!-- songs overlay -->
+        <div class="info-overlay" id="overlay-songs">
+            <div class="info-box">
+                <h3>// last 10 tracks</h3>
+                <div id="songs-list">
+                    <div class="info-row"><span class="info-key">loading...</span></div>
+                </div>
+                <button class="info-close" onclick="document.getElementById('overlay-songs').classList.remove('open')">←
+                    close</button>
             </div>
         </div>
-    </div>
 
-</main>
+        <!-- stats overlay -->
+        <div class="info-overlay" id="overlay-stats">
+            <div class="info-box">
+                <h3>// last.fm stats</h3>
+                <div id="stats-list">
+                    <div class="info-row"><span class="info-key">loading...</span></div>
+                </div>
+                <button class="info-close" onclick="document.getElementById('overlay-stats').classList.remove('open')">←
+                    close</button>
+            </div>
+        </div>
 
-<script src="script.js"></script>
+        <!-- films overlay -->
+        <div class="info-overlay" id="overlay-films">
+            <div class="info-box">
+                <h3>// top films</h3>
+                <div id="films-list"></div>
+                <button class="info-close" onclick="document.getElementById('overlay-films').classList.remove('open')">←
+                    close</button>
+            </div>
+        </div>
 
-<script type="application/ld+json">
+        <!-- whoami overlay -->
+        <div class="info-overlay" id="overlay-whoami">
+            <div class="info-box">
+                <h3>// dossier</h3>
+                <div id="whoami-list"></div>
+                <button class="info-close"
+                    onclick="document.getElementById('overlay-whoami').classList.remove('open')">← close</button>
+            </div>
+        </div>
+
+        <!-- 404 joke -->
+        <div id="overlay-404">
+            <div class="err-code">404</div>
+            <div class="err-msg">page not found.<br><span style="opacity:.4;font-size:.7rem">just kidding.</span></div>
+        </div>
+
+        <!-- sleep -->
+        <div id="sleep-overlay">😴</div>
+
+        <!-- hint confirm dialog -->
+        <div id="hint-confirm">
+            <div id="hint-confirm-box">
+                <p>are you sure you want to<br>view all commands?</p>
+                <div class="hint-confirm-btns">
+                    <button id="hint-yes">yes</button>
+                    <button id="hint-no">no</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- full command list -->
+        <div id="commands-list">
+            <div id="commands-box">
+                <h3>// all commands</h3>
+                <div class="cmd-row"><span class="cmd-key">chungus</span><span class="cmd-desc">never gonna give you
+                        up</span></div>
+                <div class="cmd-row"><span class="cmd-key">shivansh</span><span class="cmd-desc">something sweet</span>
+                </div>
+                <div class="cmd-row"><span class="cmd-key">cutie</span><span class="cmd-desc">a little surprise</span>
+                </div>
+                <div class="cmd-row"><span class="cmd-key">dl91</span><span class="cmd-desc">open a playlist</span>
+                </div>
+                <div class="cmd-row"><span class="cmd-key">matrix</span><span class="cmd-desc">there is no spoon</span>
+                </div>
+                <div class="cmd-row"><span class="cmd-key">nostalgia</span><span class="cmd-desc">lo-fi to study/relax
+                        to</span></div>
+                <div class="cmd-row"><span class="cmd-key">konami</span><span class="cmd-desc">↑↑↓↓←→←→</span></div>
+                <div class="cmd-row"><span class="cmd-key">debug</span><span class="cmd-desc">run diagnostics</span>
+                </div>
+                <div class="cmd-row"><span class="cmd-key">void</span><span class="cmd-desc">stare into the abyss</span>
+                </div>
+                <div class="cmd-row"><span class="cmd-key">hint</span><span class="cmd-desc">you already know</span>
+                </div>
+                <div class="cmd-row"><span class="cmd-key">songs</span><span class="cmd-desc">last 10 scrobbles</span>
+                </div>
+                <div class="cmd-row"><span class="cmd-key">stats</span><span class="cmd-desc">last.fm listening
+                        stats</span></div>
+                <div class="cmd-row"><span class="cmd-key">films</span><span class="cmd-desc">top 6 films</span></div>
+                <div class="cmd-row"><span class="cmd-key">whoami</span><span class="cmd-desc">classified dossier</span>
+                </div>
+                <div class="cmd-row"><span class="cmd-key">404</span><span class="cmd-desc">uh oh</span></div>
+                <div class="cmd-row"><span class="cmd-key">sleep</span><span class="cmd-desc">zzzz</span></div>
+                <div class="cmd-row"><span class="cmd-key">glitch</span><span class="cmd-desc">reality.exe has
+                        stopped</span></div>
+                <div class="cmd-row"><span class="cmd-key">invert</span><span class="cmd-desc">mirror world (3s)</span>
+                </div>
+                <div class="cmd-row"><span class="cmd-key">rage</span><span class="cmd-desc">AAAAAA</span></div>
+                <div class="cmd-row"><span class="cmd-key">sudo</span><span class="cmd-desc">nice try</span></div>
+                <button id="commands-close">← close</button>
+            </div>
+        </div>
+
+        <!-- fake terminal -->
+        <div id="debug-terminal">
+            <div id="debug-output"></div>
+            <button class="debug-exit" id="debug-exit">[ exit ]</button>
+        </div>
+
+        <!-- void — just a blinking cursor in the dark -->
+        <div id="void-overlay">
+            <div id="void-cursor"></div>
+        </div>
+
+        <!-- love popup -->
+        <div id="love-popup">
+            <span class="love-msg">i love you ♥</span>
+        </div>
+
+        <!-- matrix rain -->
+        <div id="matrix-overlay">
+            <canvas id="matrix-canvas"></canvas>
+            <p class="matrix-exit">click anywhere to exit</p>
+        </div>
+
+        <!-- password modal -->
+        <div id="pw-modal">
+            <div id="pw-box">
+                <p>🔒 you found something.<br>enter the password.</p>
+                <input id="pw-input" type="password" placeholder="••••••••" autocomplete="off" />
+                <div>
+                    <button id="pw-submit">enter</button>
+                    <button id="pw-cancel">cancel</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+
+    <script type="application/ld+json">
 {"@context":"http://schema.org","@type":"Person","name":"Shivansh Pratap Singh","url":"https://shiiiivanshsingh.github.io/intro/","sameAs":["https://github.com/ShiiiivanshSingh","https://www.linkedin.com/in/shivansh-pratap-singh-23b3b92b1","https://x.com/de_mirage_fan","https://letterboxd.com/ShivanshSingh"],"jobTitle":"Computer Science Student","email":"shivanshpratapsingh0807@gmail.com"}
 </script>
 
 </body>
+
 </html>

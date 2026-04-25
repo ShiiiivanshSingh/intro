@@ -129,6 +129,7 @@ body {
 nav {
     flex-shrink: 0; display: flex; flex-wrap: nowrap;
     align-items: center; gap: .5rem 1rem; font-size: .75rem;
+    margin-left: auto;
 }
 nav a {
     color: var(--text); text-decoration: none; border: none;
@@ -204,7 +205,7 @@ nav a.nav-cv:hover { background: var(--accent); color: var(--bg) !important; }
 
 /* dark/light toggle button */
 #theme-btn {
-    flex-shrink: 0; margin-left: auto; background: none;
+    flex-shrink: 0; background: none;
     border: 1px solid var(--muted); color: var(--text);
     border-radius: 50%; width: 1.9rem; height: 1.9rem;
     display: flex; align-items: center; justify-content: center;
@@ -284,7 +285,11 @@ a:hover { border-color: var(--accent); }
     padding-top: calc(var(--sp)*1.1);
     margin-top: calc(var(--sp)*1.1);
     border-top: 1px solid var(--muted);
+    scroll-margin-top: 3.5rem;
 }
+
+/* also offset anchor-only targets */
+#about, #featured { scroll-margin-top: 3.5rem; }
 
 /* featured cards — 2 col grid */
 .featured-grid {

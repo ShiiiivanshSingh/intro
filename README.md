@@ -27,16 +27,29 @@
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/63bcf4d2-7480-439c-9f5a-a271ad912cef" />
  -->
- <p align="center">
-  <img src="https://github.com/user-attachments/assets/ec0826a4-2a7f-4de2-895e-5aedacd7d439" width="45%" />
-  <img src="https://github.com/user-attachments/assets/f16b0899-8951-4f4e-adeb-1e64d9c882c6" width="45%" />
-</p>
+
+
+
 
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/de2e7bd2-f566-4105-be58-7dde18829c3b" width="45%" />
-  <img src="https://github.com/user-attachments/assets/f1c68cda-1fb5-4b2f-9df7-9c0a0ca9ef20" width="45%" />
+  <img src="https://github.com/user-attachments/assets/ec0826a4-2a7f-4de2-895e-5aedacd7d439" width="80%" />
 </p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f16b0899-8951-4f4e-adeb-1e64d9c882c6" width="80%" />
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/de2e7bd2-f566-4105-be58-7dde18829c3b" width="80%" />
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f1c68cda-1fb5-4b2f-9df7-9c0a0ca9ef20" width="80%" />
+</p>
+
+
+
 <h2 align="center">
   <img src="https://readme-typing-svg.demolab.com?font=Montserrat&size=22&duration=1000&pause=10000&color=F75C7E&center=true&vCenter=true&random=false&width=435&lines=Connect+With+Me+%F0%9F%A4%9D" alt="Typing SVG" />
 </h2>

@@ -653,6 +653,86 @@ a:hover {
     transform: scale(1.15);
 }
 
+/* ask me section */
+.askme-blink {
+    animation: blink-cursor .85s step-end infinite;
+    color: var(--accent);
+    margin-left: 1px;
+}
+
+@keyframes blink-cursor {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+}
+
+.askme-stack {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--sp) * .65);
+}
+
+.askme-bar {
+    display: block;
+    border: 1px solid var(--muted);
+    padding: calc(var(--sp) * .75);
+    text-decoration: none !important;
+    color: var(--text) !important;
+    transition: border-color var(--ease), transform var(--ease);
+}
+
+.askme-bar:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.askme-bar-title {
+    display: block;
+    font-size: .72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    opacity: .6;
+    margin-bottom: .5rem;
+}
+
+.askme-fake-input {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    border: 1px solid var(--muted);
+    padding: .5rem .65rem;
+    transition: border-color var(--ease);
+}
+
+.askme-bar:hover .askme-fake-input {
+    border-color: color-mix(in srgb, var(--accent) 40%, var(--muted));
+}
+
+.askme-placeholder {
+    font-size: .85rem;
+    opacity: .35;
+    flex: 1;
+}
+
+.askme-cursor {
+    color: var(--accent);
+    opacity: .75;
+    animation: blink-cursor .85s step-end infinite;
+    animation-delay: .4s;
+}
+
+.askme-send {
+    font-size: .8rem;
+    color: var(--accent);
+    opacity: .5;
+    transition: opacity var(--ease), transform var(--ease);
+}
+
+.askme-bar:hover .askme-send {
+    opacity: 1;
+    transform: translate(2px, -2px);
+}
+
 /* standard project list — the left border turns accent on hover */
 ul.cards {
     list-style: none;
